@@ -24,7 +24,7 @@
       <div class="filter-field"><label class="form-label" for="topic">研究方向</label><select class="form-select" id="topic"><option value="">全部研究方向</option><option>知识工程</option><option>假设生成</option><option>计算执行</option><option>闭环发现</option><option>通用科研</option></select></div>
       <div class="filter-field"><label class="form-label" for="code">代码状态</label><select class="form-select" id="code"><option value="">全部代码状态</option><option value="yes">有作者代码 / 资源</option><option value="no">无已确认代码链接</option></select></div>
       <div class="filter-field"><label class="form-label" for="sort">排序方式</label><select class="form-select" id="sort"><option value="group-desc">类别内年份：新 → 旧</option><option value="group-asc">类别内年份：旧 → 新</option><option value="year-desc">全部年份：新 → 旧</option><option value="year-asc">全部年份：旧 → 新</option></select></div>
-      <div class="filter-field"><label class="form-label" for="reading-filter">阅读状态（本机）</label><select class="form-select" id="reading-filter"><option value="">全部阅读状态</option><option value="unmarked">未标记</option><option value="unread">待读</option><option value="reading">阅读中</option><option value="read">已读</option></select></div>
+      <div class="filter-field"><label class="form-label" for="reading-filter">阅读状态</label><select class="form-select" id="reading-filter"><option value="">全部阅读状态</option><option value="unmarked">未标记</option><option value="unread">待读</option><option value="reading">阅读中</option><option value="read">已读</option></select></div>
       <div class="form-check note-filter"><input class="form-check-input" type="checkbox" id="notes-filter"><label class="form-check-label" for="notes-filter">仅看有笔记</label></div>
       <button class="reset" id="reset" type="button">重置全部</button>
       <div class="filter-actions d-lg-none"><p id="filter-result" aria-live="polite">显示 29 / 29 篇</p><button class="btn btn-primary w-100" type="button" data-bs-dismiss="offcanvas" data-bs-target="#filter-panel">查看结果</button></div>
@@ -32,8 +32,7 @@
   </div>
 </div>
 <p id="active-filters" class="active-filters" aria-live="polite" hidden></p>
-<p class="reading-hint">阅读标记仅保存在本机浏览器，刷新后保留，不会同步到网站或其他设备。AutoDFT 的笔记为界面演示。</p>
-<p id="storage-notice" class="alert alert-warning" role="status" hidden>当前浏览器无法保存阅读状态，本次标记只在当前页面有效。</p>
+<p class="reading-hint">阅读进度由站点维护，所有设备展示一致。AutoDFT 的笔记为界面演示。</p>
 <section class="catalog" aria-label="文献目录"><div class="catalog-top"><span id="count" aria-live="polite">显示 29 / 29 篇</span><span class="legend"><b>CCF 2026 目录</b> · JCR 2025 发布版 · 中科院 2025 大类</span></div><table><thead><tr><th scope="col">文献 / 一句话贡献</th><th scope="col">类型 / 方向</th><th scope="col">发表</th><th scope="col">CCF</th><th scope="col">收录 / 分区</th><th scope="col">作者代码</th><th scope="col">阅读</th><th scope="col">链接</th></tr></thead><tbody><tr class="paper-row" data-id="0">
       <td class="paper" data-label="文献"><span class="rownum">01</span><div><button class="title-button" aria-expanded="false" aria-controls="detail-0" data-detail="0">AutoDFT<span class="expand-symbol" aria-hidden="true">＋</span></button><span class="description">DFT 的动态规划、故障恢复与反思</span></div></td>
       <td data-label="类型 / 方向"><span class="badge blue">方法</span><small>计算执行</small></td>
@@ -326,5 +325,6 @@ const papers=[{"key": "R6WYYSJE", "name": "AutoDFT", "title": "AutoDFT: A Closed
 <script src="vendor/marked/marked.umd.js"></script>
 <script src="vendor/dompurify/purify.min.js"></script>
 <script src="assets/notes-data.js"></script>
+<script src="assets/reading-data.js"></script>
 <script src="assets/literature.js"></script>
 </body></html>

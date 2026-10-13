@@ -22,7 +22,26 @@
 
 复制 `notes/TEMPLATE.md`，按 `年份-论文简称.md` 命名，例如 `notes/2025-SciAgents.md`，再从汇总文件链接到笔记。
 
-模板是可选的整理工具。未填写的字段可以保留“待补充”，不要据收藏状态推断论文已读。网站已提供阅读状态筛选，第一版标记保存在同一浏览器、同一网站的 localStorage 中，不会写回笔记或同步到其他设备。
+模板是可选的整理工具。未填写的字段可以保留“待补充”，不要据收藏状态推断论文已读。网站已提供阅读状态筛选，正式状态保存在 `data/reading-status.json`，由仓库维护，部署后所有设备展示一致。
+
+## 更新正式阅读状态
+
+在 `data/reading-status.json` 中根据 `name` 找到论文，修改对应 `status`。论文 `key` 用于稳定关联，`name` 仅方便人工查找。
+
+| status | 网站标签 |
+|---|---|
+| `unmarked` | 未标记 |
+| `unread` | 待读 |
+| `reading` | 阅读中 |
+| `read` | 已读 |
+
+例如 AutoDFT 阅读中时，将它的 `status` 改为 `reading`。运行 `python scripts/build_notes.py`，同时提交源 JSON 和生成的 `assets/reading-data.js`，推送并部署后生效。网站不再读取旧版 localStorage 标记，也不自动迁移它们；笔记模板里的阅读状态不会覆盖正式记录。
+
+## Markdown 上传与显示
+
+网站支持标准 Markdown 的标题、列表、引用、链接、表格、任务列表和代码块。正文按电脑、平板和手机适配；图片可放大，视频使用浏览器原生播放器。公式、Mermaid 图和 Obsidian 双链等扩展语法尚未接入。
+
+上传 `.md` 文件到仓库并不会自动知道它属于哪篇论文。需要将文件保存在 `notes/`、在 `notes/index.json` 中建立关联，并运行下述生成命令。图片与视频附件需一并上传，不能使用自己电脑上的绝对路径。
 
 要在网站显示笔记，在 `notes/index.json` 中用论文 `key` 关联 Markdown 文件。`key` 可在 `index.html` 的 `papers` 数据中找到，它不依赖列表顺序或当前页码。例如将演示笔记替换为自己的内容：
 

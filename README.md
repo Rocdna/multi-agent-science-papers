@@ -32,11 +32,11 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 
 文献先按全部数据搜索、筛选和排序，再分页显示；默认电脑每页 20 篇、平板 12 篇、手机 10 篇，也可手动调整。打开和关闭笔记不会重置当前分页和筛选。
 
-阅读状态提供“未标记、待读、阅读中、已读”。已有文献默认未标记，避免据收藏状态推断阅读进度。第一版状态保存在当前浏览器的 localStorage，不提交到 Git，也不在电脑与手机之间同步；重置筛选不会删除已保存的阅读状态。
+阅读状态提供“未标记、待读、阅读中、已读”，正式记录保存在 `data/reading-status.json`。已有文献暂时未标记，避免据收藏状态推断阅读进度。页面只显示状态标签，所有设备读取同一份站点数据；修改状态后生成数据并提交部署，不在网页上直接修改。
 
 有笔记的文献显示“查看笔记”入口。笔记用 Bootstrap 弹窗展示，手机为全屏，支持章节目录、Markdown、图片放大和原生短视频播放器；每份笔记保留可直接访问的链接。AutoDFT 的“笔记 · 演示”仅供查看布局，不是真实阅读记录。
 
-真实笔记放在 `notes/` 中，通过 `notes/index.json` 关联论文的稳定 `key`。更新笔记后运行 `python scripts/build_notes.py`，生成可离线使用的 `assets/notes-data.js`。文字和随仓库发布的附件属于公开内容。
+真实笔记使用 UTF-8 编码的 `.md` 文件，放在 `notes/` 中，通过 `notes/index.json` 关联论文的稳定 `key`。更新笔记或阅读状态后运行 `python scripts/build_notes.py`，生成可离线使用的笔记与阅读状态数据。文字和随仓库发布的附件属于公开内容；当前没有网页上传或在线保存入口，上传文件到 GitHub 后仍需完成关联和生成步骤。
 
 ## 当前分类
 
@@ -75,6 +75,8 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 ├── assets/reading.css                  # 分页、阅读状态与笔记样式
 ├── assets/literature.js                # 文献列表与笔记弹窗逻辑
 ├── assets/notes-data.js                # 由 Markdown 生成的笔记数据
+├── assets/reading-data.js              # 由仓库记录生成的阅读状态
+├── data/reading-status.json            # 正式阅读状态，按论文 key 维护
 ├── vendor/bootstrap/                   # Bootstrap 静态依赖与许可证
 ├── vendor/marked/                      # Markdown 渲染依赖
 ├── vendor/dompurify/                    # 笔记 HTML 清理依赖
@@ -95,7 +97,7 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 
 ## 后续计划
 
-- [x] 阅读状态：未标记、待读、阅读中、已读（当前浏览器保存）。
+- [x] 阅读状态：未标记、待读、阅读中、已读（仓库文件保存）。
 - [x] 分页列表与 Markdown 笔记弹窗，支持图片及短视频。
 - [ ] 论文创新点与主要贡献。
 - [ ] 实验依据、局限性与个人思考。

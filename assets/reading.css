@@ -8,7 +8,7 @@
 .catalog thead th:nth-child(7){width:11%}
 .catalog thead th:nth-child(8){width:10%}
 .reading-hint{font-size:12px;color:var(--muted);margin:0 0 12px;line-height:1.7}
-.reading-status{width:100%;max-width:125px;min-height:36px;padding:6px;border:1px solid #d4dce8;border-radius:7px;font-size:13px;background:#f4f6f9;color:#68758a;cursor:pointer}
+.reading-status{display:inline-flex;align-items:center;min-height:28px;padding:4px 9px;border:1px solid #d4dce8;border-radius:6px;font-size:12px;background:#f4f6f9;color:#68758a;white-space:nowrap}
 .reading-status[data-status="unread"]{background:#f4f6f9;color:#607086}
 .reading-status[data-status="reading"]{background:#eaf0ff;color:#245ed8;border-color:#bfd0fa}
 .reading-status[data-status="read"]{background:#e8f5ed;color:#287347;border-color:#bcdcc7}
@@ -71,7 +71,7 @@
 .note-image-dialog .btn-close{position:absolute;right:12px;top:10px}
 
 @media(max-width:991.98px){
-  .reading-status{min-height:44px;font-size:16px;max-width:150px}
+  .reading-status{min-height:30px;font-size:13px}
   .resource .note-button{min-height:44px;font-size:13px;margin:0}
   .note-filter{margin:0;padding-top:8px;font-size:15px}
   .note-filter .form-check-input{width:20px;height:20px;margin-top:2px}

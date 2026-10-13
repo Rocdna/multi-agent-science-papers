@@ -8,12 +8,7 @@
     reading: byId('reading-filter'), notes: byId('notes-filter'), size: byId('page-size'),
   };
   const statusLabels = {unmarked: '未标记', unread: '待读', reading: '阅读中', read: '已读'};
-  const storageKey = 'literature-reading-status-v1';
-  let statuses = {};
-  try {
-    const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
-    if (saved && typeof saved === 'object' && !Array.isArray(saved)) statuses = saved;
-  } catch (_) { /* Keep the page usable without browser storage. */ }
+  const statuses = literatureReadingStatuses;
   const defaultSize = () => innerWidth < 768 ? 10 : innerWidth < 992 ? 12 : 20;
   let selectedKind = '全部', currentPage = 1, pageSize = defaultSize(), customSize = false;
   let matchingRows = [], noteTrigger = null;
@@ -24,25 +19,15 @@
   const statusFor = paper => Object.hasOwn(statusLabels, statuses[paper.key]) ? statuses[paper.key] : 'unmarked';
   const paperFor = row => papers[Number(row.dataset.id)];
 
-  function saveStatus(paper, value) {
-    statuses[paper.key] = value;
-    try { localStorage.setItem(storageKey, JSON.stringify(statuses)); }
-    catch (_) { byId('storage-notice').hidden = false; }
-  }
-
   rows.forEach(row => {
     const paper = paperFor(row);
     const cell = document.createElement('td');
     cell.className = 'reading-cell'; cell.dataset.label = '阅读状态';
-    const select = document.createElement('select');
-    select.className = 'reading-status'; select.setAttribute('aria-label', paper.name + ' 阅读状态');
-    for (const [value, label] of Object.entries(statusLabels)) select.add(new Option(label, value));
-    select.value = statusFor(paper); select.dataset.status = select.value;
-    select.addEventListener('change', () => {
-      saveStatus(paper, select.value); select.dataset.status = select.value;
-      refresh(false);
-    });
-    cell.append(select); row.insertBefore(cell, row.querySelector('.resource'));
+    const badge = document.createElement('span');
+    badge.className = 'reading-status'; badge.dataset.status = statusFor(paper);
+    badge.textContent = statusLabels[badge.dataset.status];
+    badge.setAttribute('aria-label', paper.name + ' 阅读状态：' + badge.textContent);
+    cell.append(badge); row.insertBefore(cell, row.querySelector('.resource'));
     const note = noteFor(paper);
     if (note) {
       const button = document.createElement('button');
