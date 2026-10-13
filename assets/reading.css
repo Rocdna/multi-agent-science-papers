@@ -14,6 +14,18 @@
 .reading-status[data-status="read"]{background:#e8f5ed;color:#287347;border-color:#bcdcc7}
 .note-button{display:inline-flex;align-items:center;justify-content:center;min-height:36px;margin:3px 0 0;padding:5px 9px;border:1px solid #cfc4ec;border-radius:7px;font-size:12px;color:#7450ac;background:#f3effc;white-space:nowrap}
 .note-filter{margin-bottom:12px;font-size:13px;white-space:nowrap}
+@media(min-width:992px){
+  .toolbar{display:grid;grid-template-columns:auto minmax(240px,1fr);gap:16px;align-items:center}
+  .toolbar .tabs{align-self:center}
+  .toolbar .search{width:100%;min-width:0}
+  .toolbar .filter-panel{grid-column:1/-1;width:100%;padding-top:14px;border-top:1px solid var(--line)}
+  .filter-panel .offcanvas-body{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto auto;gap:14px;align-items:end;width:100%}
+  .filter-field{min-width:0}
+  .filter-panel select{min-width:0}
+  .note-filter{display:flex;align-items:center;gap:7px;height:44px;margin:0;padding:0 4px;align-self:end}
+  .note-filter .form-check-input{float:none;flex-shrink:0;margin:0;width:16px;height:16px}
+  .toolbar .reset{height:44px;padding:8px 10px;align-self:end}
+}
 .pagination-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin:18px 0}
 .page-settings{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px;flex-wrap:wrap}
 .page-settings .form-select{width:auto;min-height:44px;font-size:14px}
