@@ -49,3 +49,11 @@ python scripts/prepare_display.py --source "D:/zotero_doc/Multi-agent_AI材料�
 3. 核对 Markdown 条目数、HTML 论文数与 README 统计一致。
 4. 查看 `git diff` 和 `git status`，确认本地附件、数据库及备份没有被加入提交。
 5. 在 `CHANGELOG.md` 中记录有意义的新增、修订或功能变化。
+
+## 响应式页面维护
+
+页面依赖 `vendor/bootstrap/bootstrap.min.css`、`vendor/bootstrap/bootstrap.min.js` 和 `assets/responsive.css`，部署或本地打开时保留这些文件的相对目录。Bootstrap 的版本与来源说明见 `vendor/bootstrap/README.md`。
+
+新增筛选条件优先复用当前 `filter-panel`，确保手机抽屉与电脑工具栏共享同一控件。重新从外部工具生成 HTML 时，还需保留图标、上述依赖、筛选抽屉结构和已选条件显示逻辑；现有路径清理脚本不会自动恢复这些界面改动。
+
+界面修改后，至少检查 320px、390px、820px、1024px 和 1440px 的布局，以及筛选、排序、重置、详情展开和抽屉关闭。实际手机浏览器的触摸、软键盘和缩放行为可进一步在设备上检查。
