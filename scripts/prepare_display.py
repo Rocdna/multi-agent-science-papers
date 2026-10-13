@@ -7,7 +7,7 @@ import re
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DISPLAY = ROOT / "Multi-agent_AI材料文献展示.html"
+DISPLAY = ROOT / "index.html"
 
 
 def main():

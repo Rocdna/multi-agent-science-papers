@@ -9,7 +9,7 @@
 - Zotero 数据库：`D:/zotero_doc/zotero.sqlite`
 - 主要汇总分类：`Multi-Agent for science`（用户称为 Multi-agent；已在数据库中确认，collectionID 为 `2`）。这是 Zotero 分类，不是同名文件夹。
 - 论文附件存储目录：`D:/zotero_doc/storage`；具体附件与论文的对应关系需通过 Zotero 数据确认。
-- 当前汇总文件：`Multi-agent_AI材料文献总结.md`、`Multi-agent_AI材料文献展示.html`。
+- 当前汇总文件：`Multi-agent_AI材料文献总结.md`、`index.html`（原展示页已改名）。
 
 ## 维护方向
 

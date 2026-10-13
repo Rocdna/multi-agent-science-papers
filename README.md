@@ -7,7 +7,7 @@
 ## 从这里开始
 
 - [文献分类汇总](Multi-agent_AI材料文献总结.md)：直接在 GitHub 阅读。
-- [交互展示页](Multi-agent_AI材料文献展示.html)：下载仓库后，用浏览器打开；支持搜索、分类筛选、排序和展开论文详情。GitHub 文件页面显示 HTML 源码，在线交互展示需另行启用静态托管。
+- [交互展示页](index.html)：下载仓库后，用浏览器打开；支持搜索、分类筛选、排序和展开论文详情。GitHub 文件页面显示 HTML 源码，在线交互展示需另行启用静态托管。
 - [维护说明](CONTRIBUTING.md)：新增论文、修订信息和记录阅读笔记的方法。
 - [更新记录](CHANGELOG.md)：汇总项目的主要变化。
 
@@ -43,7 +43,7 @@
 .
 ├── README.md                           # 项目入口
 ├── Multi-agent_AI材料文献总结.md         # GitHub 可直接阅读的分类表
-├── Multi-agent_AI材料文献展示.html       # 可离线打开的交互展示
+├── index.html                          # 可离线打开的交互展示
 ├── CONTRIBUTING.md                     # 文献维护流程
 ├── CHANGELOG.md                        # 更新记录
 ├── notes/
