@@ -28,6 +28,6 @@
 - 运行 `python scripts/prepare_display.py` 清理公开页面的本地 PDF 链接，原始页面备份到已忽略的 `.local/`。
 - `.gitignore` 排除本地 PDF、Zotero 数据库和页面备份。
 - 用户已将网站部署到 Cloudflare；具体域名与部署方式尚未记录。
-- 网站图标在根目录，提供 SVG、ICO 和 PNG；来源及授权见 `ICON_CREDITS.md`。重新生成展示页时保留 `<head>` 图标声明和页脚署名。
+- 网站图标采用用户确认的透明背景橙色猫耳少女头像，在根目录提供 ICO 和 PNG；来源见 `ICON_CREDITS.md`。重新生成展示页时保留 `<head>` 图标声明和页脚说明链接。
 
 记录日期：2026-10-13。
