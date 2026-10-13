@@ -28,6 +28,16 @@
 
 Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/responsive.css`。下载和部署时保留完整目录即可，无需构建命令。
 
+## 分页、阅读状态与笔记
+
+文献先按全部数据搜索、筛选和排序，再分页显示；默认电脑每页 20 篇、平板 12 篇、手机 10 篇，也可手动调整。打开和关闭笔记不会重置当前分页和筛选。
+
+阅读状态提供“未标记、待读、阅读中、已读”。已有文献默认未标记，避免据收藏状态推断阅读进度。第一版状态保存在当前浏览器的 localStorage，不提交到 Git，也不在电脑与手机之间同步；重置筛选不会删除已保存的阅读状态。
+
+有笔记的文献显示“查看笔记”入口。笔记用 Bootstrap 弹窗展示，手机为全屏，支持章节目录、Markdown、图片放大和原生短视频播放器；每份笔记保留可直接访问的链接。AutoDFT 的“笔记 · 演示”仅供查看布局，不是真实阅读记录。
+
+真实笔记放在 `notes/` 中，通过 `notes/index.json` 关联论文的稳定 `key`。更新笔记后运行 `python scripts/build_notes.py`，生成可离线使用的 `assets/notes-data.js`。文字和随仓库发布的附件属于公开内容。
+
 ## 当前分类
 
 现有汇总的文献内容更新于 **2026-10-12**，共 **29 篇**。
@@ -62,13 +72,21 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 ├── Multi-agent_AI材料文献总结.md         # GitHub 可直接阅读的分类表
 ├── index.html                          # 可离线打开的交互展示
 ├── assets/responsive.css               # 手机、平板与触摸交互样式
+├── assets/reading.css                  # 分页、阅读状态与笔记样式
+├── assets/literature.js                # 文献列表与笔记弹窗逻辑
+├── assets/notes-data.js                # 由 Markdown 生成的笔记数据
 ├── vendor/bootstrap/                   # Bootstrap 静态依赖与许可证
+├── vendor/marked/                      # Markdown 渲染依赖
+├── vendor/dompurify/                    # 笔记 HTML 清理依赖
 ├── CONTRIBUTING.md                     # 文献维护流程
 ├── CHANGELOG.md                        # 更新记录
 ├── notes/
-│   └── TEMPLATE.md                     # 阅读笔记模板
+│   ├── TEMPLATE.md                     # 阅读笔记模板
+│   ├── index.json                      # 论文与笔记的关联
+│   └── demo-autodft.md                 # 明确标注的界面演示笔记
 ├── scripts/
-│   └── prepare_display.py              # 清理展示页中的本地附件路径
+│   ├── prepare_display.py              # 清理展示页中的本地附件路径
+│   └── build_notes.py                  # 生成可离线使用的笔记数据
 ├── AGENTS.md                           # Codex 项目工作入口
 └── PROJECT_CONTEXT.md                  # 本地文献来源与项目背景
 ```
@@ -77,7 +95,8 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 
 ## 后续计划
 
-- [ ] 阅读状态：待读、阅读中、已读。
+- [x] 阅读状态：未标记、待读、阅读中、已读（当前浏览器保存）。
+- [x] 分页列表与 Markdown 笔记弹窗，支持图片及短视频。
 - [ ] 论文创新点与主要贡献。
 - [ ] 实验依据、局限性与个人思考。
 - [ ] 复现状态与复现笔记。

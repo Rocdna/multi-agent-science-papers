@@ -22,7 +22,24 @@
 
 复制 `notes/TEMPLATE.md`，按 `年份-论文简称.md` 命名，例如 `notes/2025-SciAgents.md`，再从汇总文件链接到笔记。
 
-模板是可选的整理工具。未填写的字段可以保留“待补充”，不要据收藏状态推断论文已读。当前展示页尚无阅读状态筛选。
+模板是可选的整理工具。未填写的字段可以保留“待补充”，不要据收藏状态推断论文已读。网站已提供阅读状态筛选，第一版标记保存在同一浏览器、同一网站的 localStorage 中，不会写回笔记或同步到其他设备。
+
+要在网站显示笔记，在 `notes/index.json` 中用论文 `key` 关联 Markdown 文件。`key` 可在 `index.html` 的 `papers` 数据中找到，它不依赖列表顺序或当前页码。例如将演示笔记替换为自己的内容：
+
+```json
+{
+  "R6WYYSJE": {
+    "file": "notes/2026-AutoDFT.md",
+    "title": "AutoDFT 阅读笔记",
+    "updated": "2026-10-13",
+    "demo": false
+  }
+}
+```
+
+笔记保存后运行 `python scripts/build_notes.py`，同时提交 Markdown、索引、附件和生成的 `assets/notes-data.js`。不需要部署构建工具；生成的脚本让双击本地 HTML 也能阅读笔记。没有索引记录的论文不显示笔记入口。
+
+图片和视频建议保存在 `notes/assets/` 中，笔记里的附件路径相对于 Markdown 文件，例如 `![流程图](assets/流程图.png)`。短视频可使用 `<video controls preload="none" playsinline src="assets/演示.mp4"></video>`。网站解析 Markdown 后清理 HTML，保留正常图文与视频，排除脚本和事件属性。公开仓库中的笔记和附件会公开发布。
 
 ## 整理公开展示页
 
@@ -53,6 +70,8 @@ python scripts/prepare_display.py --source "D:/zotero_doc/Multi-agent_AI材料�
 ## 响应式页面维护
 
 页面依赖 `vendor/bootstrap/bootstrap.min.css`、`vendor/bootstrap/bootstrap.min.js` 和 `assets/responsive.css`，部署或本地打开时保留这些文件的相对目录。Bootstrap 的版本与来源说明见 `vendor/bootstrap/README.md`。
+
+分页、阅读状态和笔记交互由 `assets/literature.js` 维护，样式位于 `assets/reading.css`；Markdown 渲染和 HTML 清理依赖 `vendor/marked/` 与 `vendor/dompurify/`。这些文件同样需要随站点部署。
 
 新增筛选条件优先复用当前 `filter-panel`，确保手机抽屉与电脑工具栏共享同一控件。重新从外部工具生成 HTML 时，还需保留图标、上述依赖、筛选抽屉结构和已选条件显示逻辑；现有路径清理脚本不会自动恢复这些界面改动。
 
