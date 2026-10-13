@@ -7,7 +7,7 @@
     search: byId('search'), topic: byId('topic'), code: byId('code'), sort: byId('sort'),
     reading: byId('reading-filter'), notes: byId('notes-filter'), size: byId('page-size'),
   };
-  const statusLabels = {unmarked: '未标记', unread: '待读', reading: '阅读中', read: '已读'};
+  const statusLabels = {unread: '未读', reading: '阅读中', read: '已读'};
   const statuses = literatureReadingStatuses;
   const defaultSize = () => innerWidth < 768 ? 10 : innerWidth < 992 ? 12 : 20;
   let selectedKind = '全部', currentPage = 1, pageSize = defaultSize(), customSize = false;
@@ -16,7 +16,7 @@
   const noteModal = new bootstrap.Modal(noteModalElement);
   const imageDialog = byId('note-image-dialog');
   const noteFor = paper => Object.hasOwn(literatureNotes, paper.key) ? literatureNotes[paper.key] : null;
-  const statusFor = paper => Object.hasOwn(statusLabels, statuses[paper.key]) ? statuses[paper.key] : 'unmarked';
+  const statusFor = paper => Object.hasOwn(statusLabels, statuses[paper.key]) ? statuses[paper.key] : 'unread';
   const paperFor = row => papers[Number(row.dataset.id)];
 
   rows.forEach(row => {
@@ -165,53 +165,12 @@
     byId('note-updated').textContent = '更新于 ' + note.updated;
     byId('note-demo-warning').hidden = !note.demo;
     byId('note-paper-link').href = paper.paper; byId('note-source-link').href = note.file;
-    const article = byId('note-content');
-    article.innerHTML = DOMPurify.sanitize(marked.parse(note.markdown), {USE_PROFILES: {html: true}});
-    const base = new URL(note.file, document.baseURI);
-    article.querySelectorAll('[src],[poster],a[href]').forEach(element => {
-      ['src', 'poster', 'href'].forEach(attribute => {
-        const value = element.getAttribute(attribute);
-        if (!value || value.startsWith('#')) return;
-        try {
-          const url = new URL(value, base);
-          if (['http:', 'https:', 'file:'].includes(url.protocol)) element.setAttribute(attribute, url.href);
-          else element.removeAttribute(attribute);
-        } catch (_) { element.removeAttribute(attribute); }
-      });
-      if (element.tagName === 'A' && element.href && new URL(element.href).origin !== location.origin) {
-        element.target = '_blank'; element.rel = 'noopener noreferrer';
-      }
-    });
-    article.querySelectorAll('img').forEach(image => {
-      image.loading = 'lazy'; image.decoding = 'async'; image.tabIndex = 0;
-      image.setAttribute('role', 'button'); image.setAttribute('aria-label', '放大图片：' + (image.alt || '笔记图片'));
-      const enlarge = () => {
-        byId('note-image').src = image.src; byId('note-image').alt = image.alt;
-        byId('note-image-caption').textContent = image.alt; imageDialog.showModal();
-      };
-      image.addEventListener('click', enlarge);
-      image.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); enlarge(); } });
-    });
-    article.querySelectorAll('video').forEach(video => { video.controls = true; video.preload = 'none'; video.playsInline = true; video.autoplay = false; video.removeAttribute('autoplay'); });
-    article.querySelectorAll('table').forEach(table => {
-      const wrap = document.createElement('div'); wrap.className = 'note-table-wrap'; table.replaceWith(wrap); wrap.append(table);
-    });
-    document.querySelector('.note-directory').open = innerWidth >= 992;
-    const toc = byId('note-toc'); toc.replaceChildren();
-    article.querySelectorAll('h2,h3').forEach((heading, index) => {
-      heading.id = 'note-section-' + index;
-      const link = document.createElement('a'); link.href = '#' + heading.id; link.textContent = heading.textContent;
-      link.addEventListener('click', event => { event.preventDefault(); heading.scrollIntoView({behavior: 'smooth', block: 'start'}); });
-      toc.append(link);
-    });
+    LiteratureNoteRenderer.render(note);
     byId('note-scroll').scrollTop = 0;
     history.replaceState(null, '', '#note=' + encodeURIComponent(key));
-    byId('note-permalink').href = location.href;
+    byId('note-permalink').href = 'note.html?id=' + encodeURIComponent(key);
     noteModal.show();
   }
-  byId('note-image-close').addEventListener('click', () => imageDialog.close());
-  imageDialog.addEventListener('keydown', event => { if (event.key === 'Escape') event.stopPropagation(); });
-  imageDialog.addEventListener('click', event => { if (event.target === imageDialog) imageDialog.close(); });
   noteModalElement.addEventListener('hidden.bs.modal', () => {
     if (imageDialog.open) imageDialog.close();
     byId('note-content').querySelectorAll('video').forEach(video => video.pause());

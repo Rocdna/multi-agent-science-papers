@@ -30,12 +30,13 @@
 
 | status | 网站标签 |
 |---|---|
-| `unmarked` | 未标记 |
-| `unread` | 待读 |
+| `unread` | 未读（默认） |
 | `reading` | 阅读中 |
 | `read` | 已读 |
 
 例如 AutoDFT 阅读中时，将它的 `status` 改为 `reading`。运行 `python scripts/build_notes.py`，同时提交源 JSON 和生成的 `assets/reading-data.js`，推送并部署后生效。网站不再读取旧版 localStorage 标记，也不自动迁移它们；笔记模板里的阅读状态不会覆盖正式记录。
+
+未提供正式记录的论文默认显示未读。笔记的独立阅读链接为 `note.html?id=论文key`；该页与弹窗共用 `assets/note-renderer.js`，正文与图片路径保持一致。
 
 ## Markdown 上传与显示
 

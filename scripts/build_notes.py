@@ -6,14 +6,24 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 NOTES_ROOT = (ROOT / "notes").resolve()
+paper_data = (ROOT / "index.html").read_text(encoding="utf-8")
+paper_list = json.loads(re.search(r"const papers=(\[.*?\]);", paper_data, re.S).group(1))
+papers_by_key = {paper["key"]: paper for paper in paper_list}
 index = json.loads((NOTES_ROOT / "index.json").read_text(encoding="utf-8"))
 bundled = {}
 for paper_key, metadata in index.items():
+    if paper_key not in papers_by_key:
+        raise ValueError(f"Unknown note paper key: {paper_key}")
     note_path = (ROOT / metadata["file"]).resolve()
     if not note_path.is_relative_to(NOTES_ROOT) or note_path.suffix != ".md":
         raise ValueError(f"Invalid note path: {metadata['file']}")
     bundled[paper_key] = {
         **metadata,
+        "paper": {
+            "name": papers_by_key[paper_key]["name"],
+            "title": papers_by_key[paper_key]["title"],
+            "url": papers_by_key[paper_key]["paper"],
+        },
         "markdown": note_path.read_text(encoding="utf-8"),
     }
 output = ROOT / "assets" / "notes-data.js"
@@ -26,18 +36,14 @@ output.write_text(
 )
 print(f"Bundled {len(bundled)} note(s).")
 
-paper_data = (ROOT / "index.html").read_text(encoding="utf-8")
-paper_keys = {
-    paper["key"]
-    for paper in json.loads(re.search(r"const papers=(\[.*?\]);", paper_data, re.S).group(1))
-}
+paper_keys = set(papers_by_key)
 entries = json.loads((ROOT / "data" / "reading-status.json").read_text(encoding="utf-8"))
 statuses = {}
 for paper_key, entry in entries.items():
     if paper_key not in paper_keys:
         raise ValueError(f"Unknown paper key: {paper_key}")
     status = entry["status"]
-    if status not in {"unmarked", "unread", "reading", "read"}:
+    if status not in {"unread", "reading", "read"}:
         raise ValueError(f"Invalid reading status for {paper_key}: {status}")
     statuses[paper_key] = status
 (ROOT / "assets" / "reading-data.js").write_text(

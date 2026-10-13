@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Multi-agent 与 AI 材料文献的独立笔记阅读页。">
+  <meta name="theme-color" content="#245ed8">
+  <link rel="icon" href="favicon.ico?v=2" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2" sizes="180x180">
+  <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/reading.css">
+  <link rel="stylesheet" href="assets/note-page.css">
+  <title>阅读笔记 · Multi-agent × AI 材料</title>
+</head>
+<body>
+  <div class="reader-topline"></div>
+  <main class="note-page">
+    <nav class="reader-navigation" aria-label="阅读导航"><a href="index.html">← 返回文献目录</a><span>READING NOTES</span></nav>
+    <section id="note-error" class="alert alert-warning" role="status" hidden>没有找到这份笔记。请返回文献目录，选择有笔记的论文。</section>
+    <section id="note-page-content" class="reader-card" hidden>
+      <header class="note-page-header">
+        <h1 id="note-title">阅读笔记</h1>
+        <p id="note-paper-title" class="reader-paper-title"></p>
+        <div class="note-meta"><span id="note-updated"></span><span id="note-reading" class="reading-status"></span><a id="note-paper-link" target="_blank" rel="noopener noreferrer">论文原文</a><a id="note-source-link" target="_blank" rel="noopener noreferrer">Markdown 原稿</a></div>
+      </header>
+      <p id="note-demo-warning" class="note-demo-warning" hidden>这是笔记界面的演示内容，不是真实论文阅读记录，也不表示论文已读。</p>
+      <div class="note-layout"><aside><details class="note-directory" open><summary>笔记目录</summary><nav id="note-toc" class="note-toc" aria-label="笔记章节"></nav></details></aside><article id="note-content" class="note-content"></article></div>
+    </section>
+    <footer class="reader-footer">笔记随文献阅读持续更新 · <a href="index.html">Multi-agent × AI 材料</a></footer>
+  </main>
+  <dialog id="note-image-dialog" class="note-image-dialog" aria-label="笔记图片放大预览"><button type="button" id="note-image-close" class="btn-close" aria-label="关闭图片"></button><img id="note-image" alt=""><p id="note-image-caption"></p></dialog>
+  <script src="vendor/marked/marked.umd.js"></script>
+  <script src="vendor/dompurify/purify.min.js"></script>
+  <script src="assets/notes-data.js"></script>
+  <script src="assets/reading-data.js"></script>
+  <script src="assets/note-renderer.js"></script>
+  <script src="assets/note-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+:root{--ink:#17263a;--muted:#607086;--blue:#245ed8;--line:#e0e7f0}
+body{margin:0;background:#f2f5fa;color:var(--ink);font:16px/1.65 "Segoe UI","Microsoft YaHei",sans-serif}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+[hidden]{display:none!important}
+a:focus-visible,button:focus-visible,summary:focus-visible,img:focus-visible{outline:3px solid #87aaff;outline-offset:3px}
+.reader-topline{height:5px;background:linear-gradient(90deg,#123e92,#3777ed 60%,#57c5d5)}
+.note-page{max-width:1140px;margin:0 auto;padding:26px 24px 40px}
+.reader-navigation{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px;font-size:14px}
+.reader-navigation a{display:inline-flex;align-items:center;min-height:44px}
+.reader-navigation span{font-size:12px;letter-spacing:1.4px;color:var(--muted)}
+.reader-card{border:1px solid var(--line);border-radius:14px;background:white;box-shadow:0 6px 24px #23426a05;overflow:clip}
+.note-page-header{padding:28px 24px 24px;border-bottom:1px solid var(--line)}
+.note-page-header h1{font-size:29px;line-height:1.4;margin:0 0 12px;font-weight:650}
+.reader-paper-title{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px;overflow-wrap:anywhere}
+.note-page .note-meta{font-size:13px;gap:10px 16px}
+.note-page .note-meta a{display:inline-flex;align-items:center;min-height:36px}
+.reader-footer{font-size:12px;color:var(--muted);text-align:center;margin-top:24px}
+@media(max-width:767.98px){
+  .note-page{padding:12px 10px 24px}
+  .reader-navigation{margin-bottom:10px}
+  .reader-navigation span{font-size:10px;letter-spacing:.7px}
+  .note-page-header{padding:22px 16px 18px}
+  .note-page-header h1{font-size:23px}
+  .note-page .note-meta{font-size:12px;gap:8px 12px}
+}
+@media print{
+  body{background:white}
+  .note-page{max-width:none;padding:0}
+  .reader-card{border:0;box-shadow:none;overflow:visible}
+  .reader-navigation,.reader-footer,.note-directory{display:none!important}
+  .note-layout{display:block;padding:16px 0}
+  .note-content{max-width:none}
+}
