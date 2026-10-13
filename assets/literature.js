@@ -75,7 +75,7 @@
     if (controls.code.value) labels.push('代码：' + controls.code.selectedOptions[0].text);
     if (controls.reading.value) labels.push('阅读：' + statusLabels[controls.reading.value]);
     if (controls.notes.checked) labels.push('仅看有笔记（含演示）');
-    if (controls.sort.value !== 'group-desc') labels.push('排序：' + controls.sort.selectedOptions[0].text);
+    if (controls.sort.value !== 'group-asc') labels.push('排序：' + controls.sort.selectedOptions[0].text);
     byId('active-filters').textContent = labels.join(' · ');
     byId('active-filters').hidden = labels.length === 0;
     byId('filter-count').textContent = labels.length; byId('filter-count').hidden = labels.length === 0;
@@ -141,7 +141,7 @@
   });
   byId('reset').addEventListener('click', () => {
     controls.search.value = ''; controls.topic.value = ''; controls.code.value = ''; controls.reading.value = '';
-    controls.notes.checked = false; controls.sort.value = 'group-desc'; selectedKind = '全部';
+    controls.notes.checked = false; controls.sort.value = 'group-asc'; selectedKind = '全部';
     rows.forEach(row => {
       row.dataset.expanded = 'false'; const button = row.querySelector('[data-detail]');
       button.setAttribute('aria-expanded', 'false'); button.querySelector('.expand-symbol').textContent = '＋';
