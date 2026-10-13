@@ -27,7 +27,7 @@
 - `notes/TEMPLATE.md` 提供阅读笔记模板；阅读标签等尚未集成到展示页。
 - 运行 `python scripts/prepare_display.py` 清理公开页面的本地 PDF 链接，原始页面备份到已忽略的 `.local/`。
 - `.gitignore` 排除本地 PDF、Zotero 数据库和页面备份。
-- 用户已将网站部署到 Cloudflare；具体域名与部署方式尚未记录。
+- 用户已将网站部署到 Cloudflare，访问地址为 `https://rocaler.asia`；具体部署配置尚未记录。该地址同时作为 GitHub 仓库的主页链接和 README 在线入口。
 - 网站图标采用用户确认的透明背景橙色猫耳少女头像，在根目录提供 ICO 和 PNG；来源见 `ICON_CREDITS.md`。重新生成展示页时保留 `<head>` 图标声明和页脚说明链接。
 - 当前按小项目维护，采用 Bootstrap 5.3.8，不迁移 React/Vue。库文件在 `vendor/bootstrap/`，适配样式在 `assets/responsive.css`；部署时保留这些相对目录。
 - 手机和平板的筛选抽屉使用 Bootstrap Offcanvas，与电脑共享同一组控件。外部工具重新生成 HTML 时需保留依赖和筛选交互改动；清理脚本不会自动恢复页面功能。
