@@ -1,0 +1,20 @@
+# Local Zotero data and paper attachments
+storage/
+zotero_doc/
+*.sqlite
+*.sqlite-*
+*.sqlite.*
+*.pdf
+
+# Local display backups and transient files
+.local/
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+*.log
+*.tmp
+Thumbs.db
+.DS_Store
