@@ -33,8 +33,9 @@
 - 手机和平板的筛选抽屉使用 Bootstrap Offcanvas，与电脑共享同一组控件。外部工具重新生成 HTML 时需保留依赖和筛选交互改动；清理脚本不会自动恢复页面功能。
 - 文献分页和笔记交互在 `assets/literature.js`，样式在 `assets/reading.css`。默认电脑 20 篇、平板 12 篇、手机 10 篇；先筛选排序全部数据，再分页。
 - 按用户要求，网站默认在类别内按年份从旧到新；同年按名称排列，重置筛选时恢复该排序。
-- `notes/index.json` 用论文稳定 `key` 关联 UTF-8 Markdown；运行 `python scripts/build_notes.py` 生成 `assets/notes-data.js` 和 `assets/reading-data.js`。图文和视频支持通过本地 Marked 与 DOMPurify 呈现，笔记内容随公开仓库发布；当前没有网页上传入口。
-- AutoDFT 当前仅关联一份明确标注的界面演示笔记，不代表真实论文阅读记录。
-- 笔记弹窗的“独立打开”进入 `note.html?id=论文key`，是独立文档页，不是新标签页中的弹窗。弹窗和独立页共享 `assets/note-renderer.js`。
+- `notes/index.json` 用论文稳定 `key` 关联 UTF-8 Markdown 数组，每份笔记有独立 `id`、标题、日期和文件。运行 `python scripts/build_notes.py` 生成 `assets/notes-data.js` 和 `assets/reading-data.js`；脚本兼容旧单笔记对象（默认 id 为 main）。图文和视频支持通过本地 Marked 与 DOMPurify 呈现，笔记内容随公开仓库发布；当前没有网页上传入口。
+- AutoDFT 关联两份明确标注的界面演示笔记，不代表真实论文阅读记录。MARS 已有一份用户新增的方法笔记，保留其内容。
+- 笔记弹窗的“独立打开”进入 `note.html?id=论文key&note=笔记id`，是独立文档页。旧的仅含论文 key 的链接仍有效，默认打开最近更新笔记；弹窗和独立页共享 `assets/note-renderer.js` 并支持笔记切换。
+- 卡片用单个“笔记 · 数量”入口；电脑侧栏切换，手机与平板使用顶部选择框。阅读状态属于论文，不受笔记数量影响。
 
-记录日期：2026-10-13。
+记录日期：2026-10-14。

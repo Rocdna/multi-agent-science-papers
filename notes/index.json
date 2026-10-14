@@ -1,8 +1,27 @@
 {
-  "R6WYYSJE": {
-    "file": "notes/demo-autodft.md",
-    "title": "笔记界面演示",
-    "updated": "2026-10-13",
-    "demo": true
-  }
+  "VEPBCVT3": [
+    {
+      "id": "main",
+      "file": "notes/2026-MARS.md",
+      "title": "MARS：知识图谱与混合 RAG 方法笔记",
+      "updated": "2026-10-14",
+      "demo": false
+    }
+  ],
+  "R6WYYSJE": [
+    {
+      "id": "main",
+      "file": "notes/demo-autodft.md",
+      "title": "笔记界面演示",
+      "updated": "2026-10-13",
+      "demo": true
+    },
+    {
+      "id": "ideas",
+      "file": "notes/demo-autodft-ideas.md",
+      "title": "个人想法记录（演示）",
+      "updated": "2026-10-14",
+      "demo": true
+    }
+  ]
 }

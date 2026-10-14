@@ -36,7 +36,7 @@
 
 例如 AutoDFT 阅读中时，将它的 `status` 改为 `reading`。运行 `python scripts/build_notes.py`，同时提交源 JSON 和生成的 `assets/reading-data.js`，推送并部署后生效。网站不再读取旧版 localStorage 标记，也不自动迁移它们；笔记模板里的阅读状态不会覆盖正式记录。
 
-未提供正式记录的论文默认显示未读。笔记的独立阅读链接为 `note.html?id=论文key`；该页与弹窗共用 `assets/note-renderer.js`，正文与图片路径保持一致。
+未提供正式记录的论文默认显示未读。某份笔记的独立阅读链接为 `note.html?id=论文key&note=笔记id`；只提供论文 key 的旧链接仍有效，默认打开最近更新的笔记。该页与弹窗共用 `assets/note-renderer.js`，正文与图片路径保持一致。
 
 ## Markdown 上传与显示
 
@@ -44,20 +44,36 @@
 
 上传 `.md` 文件到仓库并不会自动知道它属于哪篇论文。需要将文件保存在 `notes/`、在 `notes/index.json` 中建立关联，并运行下述生成命令。图片与视频附件需一并上传，不能使用自己电脑上的绝对路径。
 
-要在网站显示笔记，在 `notes/index.json` 中用论文 `key` 关联 Markdown 文件。`key` 可在 `index.html` 的 `papers` 数据中找到，它不依赖列表顺序或当前页码。例如将演示笔记替换为自己的内容：
+要在网站显示笔记，在 `notes/index.json` 中用论文 `key` 关联 Markdown 文件。`key` 可在 `index.html` 的 `papers` 数据中找到，它不依赖列表顺序或当前页码。每篇论文可以对应一个笔记数组，例如：
 
 ```json
 {
-  "R6WYYSJE": {
-    "file": "notes/2026-AutoDFT.md",
-    "title": "AutoDFT 阅读笔记",
-    "updated": "2026-10-13",
-    "demo": false
-  }
+  "R6WYYSJE": [
+    {
+      "id": "methods",
+      "file": "notes/2026-AutoDFT-methods.md",
+      "title": "方法总结",
+      "updated": "2026-10-13",
+      "demo": false
+    },
+    {
+      "id": "ideas",
+      "file": "notes/2026-AutoDFT-ideas.md",
+      "title": "个人想法与疑问",
+      "updated": "2026-10-14",
+      "demo": false
+    }
+  ]
 }
 ```
 
 笔记保存后运行 `python scripts/build_notes.py`，同时提交 Markdown、索引、附件和生成的 `assets/notes-data.js`。不需要部署构建工具；生成的脚本让双击本地 HTML 也能阅读笔记。没有索引记录的论文不显示笔记入口。
+
+同一论文内，每份笔记的 `id` 必须唯一，使用小写英文字母、数字、连字符或下划线，以字母或数字开头，最多 64 个字符。后续改标题或更新正文时保留 `id`，避免独立链接变化。`updated` 使用 `YYYY-MM-DD`；默认按更新时间从新到旧，同日按索引中的顺序展示。标题只用于显示，不影响阅读状态。
+
+新增一份笔记只需在该论文的数组里追加记录，原有记录保留。生成脚本也兼容此前的单个对象格式，其笔记默认 ID 为 `main`；多个对象都省略 ID 会导致冲突，应为每份笔记明确设置不同 ID。空数组不会产生笔记入口。
+
+卡片只显示一个“笔记 · 数量”入口。弹窗和独立页都支持切换：电脑侧栏展示标题与更新时间，手机和平板顶部提供选择框。切换时会更新当前笔记链接，关闭弹窗不改变列表分页或筛选。演示笔记明确标注为演示，不能据笔记数量推断论文已读。
 
 图片和视频建议保存在 `notes/assets/` 中，笔记里的附件路径相对于 Markdown 文件，例如 `![流程图](assets/流程图.png)`。短视频可使用 `<video controls preload="none" playsinline src="assets/演示.mp4"></video>`。网站解析 Markdown 后清理 HTML，保留正常图文与视频，排除脚本和事件属性。公开仓库中的笔记和附件会公开发布。
 

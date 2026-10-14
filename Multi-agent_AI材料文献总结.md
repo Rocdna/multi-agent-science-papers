@@ -38,7 +38,7 @@
 | 2026 · [Battery-Sim-Agent](https://doi.org/10.1145/3770855.3818856) | 根据模拟反馈推理电池参数更新 | KDD | CCF A | [公开代码](https://github.com/opqrst-chen/Battery-Sim-Agent) |
 | 2026 · [LLEMA](https://proceedings.iclr.cc/paper_files/paper/2026/hash/e1afaedf81656c0b5e12f4508bed96ad-Abstract-Conference.html) | 规则与记忆引导的多目标进化搜索 | ICLR | CCF A | [公开代码](https://github.com/scientific-discovery/LLEMA) |
 | 2026 · [MAESTRO](https://doi.org/10.1021/acscentsci.6c01260) | 推理与反思迭代优化单原子催化剂 | ACS Central Science | SCIE；JCR Q1；中科院1区 · Top | [公开代码](https://github.com/ahrehd0506/Catalyst-Design-Agent) |
-| 2026 · [MARS](https://doi.org/10.1016/j.matt.2025.102577) | 混合检索、19个智能体与机器人实验协作 | Matter | SCIE；JCR Q1；中科院1区 · Top | [公开代码](https://github.com/tangger2000/MARS) |
+| 2026 · [MARS](https://doi.org/10.1016/j.matt.2025.102577) · [方法笔记](notes/2026-MARS.md) | 混合检索、19个智能体与机器人实验协作 | Matter | SCIE；JCR Q1；中科院1区 · Top | [公开代码](https://github.com/tangger2000/MARS) |
 | 2026 · [MASTER](https://doi.org/10.1038/s41524-026-02139-1) | 层级推理选择下一次催化剂计算 | npj Computational Materials | SCIE；JCR Q1；中科院1区 | 未找到 |
 | 2026 · [PeroMAS](https://doi.org/10.1145/3770855.3818858) | 钙钛矿多目标设计与真实合成验证 | KDD | CCF A | [公开代码](https://github.com/DEFENSE-SEU/PeroMAS) |
 | 2025 · [Atomic Layer Processing](https://arxiv.org/abs/2509.26201) | 通过有限传感信息探索未知反应规则 | NeurIPS AI4MAT Workshop | 不计入主会 CCF | [公开代码](https://github.com/awwerbro/ALDReactor) |

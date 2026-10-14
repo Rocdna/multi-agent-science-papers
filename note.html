@@ -9,7 +9,7 @@
   <link rel="icon" href="favicon-32x32.png?v=2" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2" sizes="180x180">
   <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/reading.css">
+  <link rel="stylesheet" href="assets/reading.css"><link rel="stylesheet" href="assets/note-collections.css">
   <link rel="stylesheet" href="assets/note-page.css">
   <title>阅读笔记 · Multi-agent × AI 材料</title>
 </head>
@@ -25,7 +25,8 @@
         <div class="note-meta"><span id="note-updated"></span><span id="note-reading" class="reading-status"></span><a id="note-paper-link" target="_blank" rel="noopener noreferrer">论文原文</a><a id="note-source-link" target="_blank" rel="noopener noreferrer">Markdown 原稿</a></div>
       </header>
       <p id="note-demo-warning" class="note-demo-warning" hidden>这是笔记界面的演示内容，不是真实论文阅读记录，也不表示论文已读。</p>
-      <div class="note-layout"><aside><details class="note-directory" open><summary>笔记目录</summary><nav id="note-toc" class="note-toc" aria-label="笔记章节"></nav></details></aside><article id="note-content" class="note-content"></article></div>
+      <div class="note-mobile-switcher"><label for="note-select">选择这篇论文的笔记</label><select id="note-select" class="form-select" aria-label="选择笔记"></select></div>
+<div class="note-layout"><aside><section class="note-collection" aria-label="这篇论文的笔记"><h3>这篇论文的笔记 <span id="note-total"></span></h3><div id="note-list" class="note-list"></div></section><details class="note-directory" open><summary>笔记目录</summary><nav id="note-toc" class="note-toc" aria-label="笔记章节"></nav></details></aside><article id="note-content" class="note-content"></article></div>
     </section>
     <footer class="reader-footer">笔记随文献阅读持续更新 · <a href="index.html">Multi-agent × AI 材料</a></footer>
   </main>

@@ -2,8 +2,36 @@
 (() => {
   const byId = id => document.getElementById(id);
   const imageDialog = byId('note-image-dialog');
+  function list(key) {
+    if (!Object.hasOwn(literatureNotes, key)) return [];
+    const value = literatureNotes[key];
+    return Array.isArray(value) ? value : [{...value, id: value.id || 'main'}];
+  }
+  function select(key, id = null) {
+    const notes = list(key);
+    return id === null ? notes[0] : notes.find(note => note.id === id);
+  }
+  function switcher(key, activeId, onSelect) {
+    const notes = list(key), menu = byId('note-list'), dropdown = byId('note-select');
+    menu.replaceChildren(); dropdown.replaceChildren();
+    byId('note-total').textContent = notes.length + ' 份';
+    notes.forEach(note => {
+      const button = document.createElement('button');
+      button.type = 'button'; button.className = 'note-choice'; button.dataset.noteId = note.id;
+      button.setAttribute('aria-current', String(note.id === activeId));
+      const title = document.createElement('span'); title.textContent = note.title;
+      const meta = document.createElement('small'); meta.textContent = note.updated + (note.demo ? ' · 演示' : '');
+      button.append(title, meta); button.addEventListener('click', () => onSelect(note.id));
+      menu.append(button);
+      dropdown.add(new Option(note.title + (note.demo && !note.title.includes('演示') ? '（演示）' : '') + ' · ' + note.updated, note.id));
+    });
+    dropdown.value = activeId;
+    dropdown.onchange = () => onSelect(dropdown.value);
+  }
   function render(note) {
     const article = byId('note-content');
+    if (imageDialog.open) imageDialog.close();
+    article.querySelectorAll('video').forEach(video => video.pause());
     article.innerHTML = DOMPurify.sanitize(marked.parse(note.markdown), {USE_PROFILES: {html: true}});
     const base = new URL(note.file, document.baseURI);
     article.querySelectorAll('[src],[poster],a[href]').forEach(element => {
@@ -46,5 +74,5 @@
   byId('note-image-close').addEventListener('click', () => imageDialog.close());
   imageDialog.addEventListener('keydown', event => { if (event.key === 'Escape') event.stopPropagation(); });
   imageDialog.addEventListener('click', event => { if (event.target === imageDialog) imageDialog.close(); });
-  window.LiteratureNoteRenderer = {render};
+  window.LiteratureNoteRenderer = {render, list, select, switcher};
 })();

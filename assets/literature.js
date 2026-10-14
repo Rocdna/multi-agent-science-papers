@@ -15,7 +15,7 @@
   const noteModalElement = byId('note-modal');
   const noteModal = new bootstrap.Modal(noteModalElement);
   const imageDialog = byId('note-image-dialog');
-  const noteFor = paper => Object.hasOwn(literatureNotes, paper.key) ? literatureNotes[paper.key] : null;
+  const notesFor = paper => LiteratureNoteRenderer.list(paper.key);
   const statusFor = paper => Object.hasOwn(statusLabels, statuses[paper.key]) ? statuses[paper.key] : 'unread';
   const paperFor = row => papers[Number(row.dataset.id)];
 
@@ -28,12 +28,13 @@
     badge.textContent = statusLabels[badge.dataset.status];
     badge.setAttribute('aria-label', paper.name + ' 阅读状态：' + badge.textContent);
     cell.append(badge); row.insertBefore(cell, row.querySelector('.resource'));
-    const note = noteFor(paper);
-    if (note) {
+    const notes = notesFor(paper);
+    if (notes.length) {
       const button = document.createElement('button');
       button.type = 'button'; button.className = 'note-button';
-      button.textContent = note.demo ? '笔记 · 演示' : '查看笔记';
-      button.setAttribute('aria-label', paper.name + (note.demo ? ' 笔记界面演示' : ' 阅读笔记'));
+      const demoOnly = notes.every(note => note.demo);
+      button.textContent = '笔记 · ' + notes.length + (demoOnly ? '（演示）' : '');
+      button.setAttribute('aria-label', paper.name + ' 的 ' + notes.length + ' 份' + (demoOnly ? '演示笔记' : '笔记'));
       button.addEventListener('click', () => openNote(paper.key, button));
       row.querySelector('.resource').append(button);
     }
@@ -65,7 +66,7 @@
       && (!controls.topic.value || paper.topic === controls.topic.value)
       && (!controls.code.value || (controls.code.value === 'yes' ? Boolean(paper.code) : !paper.code))
       && (!controls.reading.value || statusFor(paper) === controls.reading.value)
-      && (!controls.notes.checked || Boolean(noteFor(paper)))
+      && (!controls.notes.checked || notesFor(paper).length > 0)
       && terms.every(term => text.includes(term));
   }
 
@@ -157,18 +158,19 @@
   window.addEventListener('beforeprint', () => renderPage(true));
   window.addEventListener('afterprint', () => renderPage());
 
-  function openNote(key, trigger = null) {
+  function openNote(key, trigger = null, noteId = null) {
     const paper = papers.find(item => item.key === key);
-    const note = paper && noteFor(paper); if (!note) return;
+    const note = paper && LiteratureNoteRenderer.select(key, noteId); if (!note) return;
     noteTrigger = trigger;
-    byId('note-title').textContent = paper.name + ' · ' + (note.demo ? '演示笔记' : '阅读笔记');
+    byId('note-title').textContent = paper.name + ' · ' + note.title;
     byId('note-updated').textContent = '更新于 ' + note.updated;
     byId('note-demo-warning').hidden = !note.demo;
     byId('note-paper-link').href = paper.paper; byId('note-source-link').href = note.file;
+    LiteratureNoteRenderer.switcher(key, note.id, id => openNote(key, trigger, id));
     LiteratureNoteRenderer.render(note);
     byId('note-scroll').scrollTop = 0;
-    history.replaceState(null, '', '#note=' + encodeURIComponent(key));
-    byId('note-permalink').href = 'note.html?id=' + encodeURIComponent(key);
+    history.replaceState(null, '', '#note=' + encodeURIComponent(key) + '&entry=' + encodeURIComponent(note.id));
+    byId('note-permalink').href = 'note.html?id=' + encodeURIComponent(key) + '&note=' + encodeURIComponent(note.id);
     noteModal.show();
   }
   noteModalElement.addEventListener('hidden.bs.modal', () => {
@@ -177,9 +179,11 @@
     history.replaceState(null, '', location.pathname + location.search);
     if (noteTrigger && !noteTrigger.closest('.paper-row').hidden) noteTrigger.focus({preventScroll: true});
   });
-  window.addEventListener('hashchange', () => {
-    if (location.hash.startsWith('#note=')) openNote(decodeURIComponent(location.hash.slice(6)));
-  });
+  function openLinkedNote() {
+    const params = new URLSearchParams(location.hash.slice(1));
+    if (params.get('note')) openNote(params.get('note'), null, params.get('entry'));
+  }
+  window.addEventListener('hashchange', openLinkedNote);
   refresh();
-  if (location.hash.startsWith('#note=')) openNote(decodeURIComponent(location.hash.slice(6)));
+  openLinkedNote();
 })();

@@ -1,0 +1,24 @@
+.note-collection{padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+.note-collection h3{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted);margin:0 0 10px}
+.note-collection h3 span{font-size:11px;font-weight:400;white-space:nowrap}
+.note-list{display:flex;flex-direction:column;gap:7px}
+.note-choice{width:100%;padding:10px;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--ink);text-align:left;line-height:1.6;font-size:13px;overflow-wrap:anywhere}
+.note-choice small{display:block;font-size:11px;color:var(--muted);margin:5px 0 0}
+.note-choice:hover{background:#f5f8ff}
+.note-choice[aria-current="true"]{background:#eaf0ff;border-color:#c5d6fb;color:var(--blue)}
+.note-choice:focus-visible{outline:3px solid #87aaff;outline-offset:2px}
+.note-mobile-switcher{display:none}
+.note-layout>aside{position:sticky;top:20px;align-self:start;max-height:calc(100dvh - 160px);overflow-y:auto;padding-right:3px}
+.note-layout .note-directory{position:static}
+.note-list:empty{display:none}
+.note-modal .modal-header>div{min-width:0}
+.note-modal .modal-title{overflow-wrap:anywhere}
+@media(max-width:991.98px){
+  .note-collection{display:none}
+  .note-mobile-switcher{display:block;padding:18px 22px 0}
+  .note-mobile-switcher label{display:block;font-size:13px;color:var(--muted);margin-bottom:7px}
+  .note-mobile-switcher select{width:100%;min-height:44px;font-size:16px}
+  .note-layout>aside{position:static;max-height:none;overflow:visible;padding:0}
+}
+@media(max-width:767.98px){.note-mobile-switcher{padding:16px 16px 0}}
+@media print{.note-collection,.note-mobile-switcher{display:none!important}}

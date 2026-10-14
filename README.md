@@ -34,7 +34,9 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 
 阅读状态提供“未读、阅读中、已读”，正式记录保存在 `data/reading-status.json`。未填写的记录默认显示“未读”，此前未标记的条目也已归入未读。页面只显示状态标签，所有设备读取同一份站点数据；修改状态后生成数据并提交部署，不在网页上直接修改。
 
-有笔记的文献显示“查看笔记”入口。笔记用 Bootstrap 弹窗展示，手机为全屏，支持章节目录、Markdown、图片放大和原生短视频播放器。“独立打开”进入真正的阅读页 `note.html?id=论文key`，方便分享和长时间阅读；弹窗与独立页共用同一份笔记和渲染逻辑。AutoDFT 的“笔记 · 演示”仅供查看布局，不是真实阅读记录。
+每篇文献可以关联多份 Markdown 笔记，卡片只显示一个“笔记 · 数量”入口。默认打开最近更新的笔记；电脑在侧栏切换，手机和平板在顶部选择。笔记用 Bootstrap 弹窗展示，手机为全屏，支持章节目录、图片放大和原生短视频播放器。
+
+“独立打开”进入真正的阅读页 `note.html?id=论文key&note=笔记id`，方便分享和长时间阅读；独立页同样可以切换笔记。此前仅含论文 key 的链接仍可使用，默认打开最近更新的一份。弹窗与独立页共用笔记和渲染逻辑。AutoDFT 的两份演示笔记仅供查看布局，不是真实阅读记录。
 
 真实笔记使用 UTF-8 编码的 `.md` 文件，放在 `notes/` 中，通过 `notes/index.json` 关联论文的稳定 `key`。更新笔记或阅读状态后运行 `python scripts/build_notes.py`，生成可离线使用的笔记与阅读状态数据。文字和随仓库发布的附件属于公开内容；当前没有网页上传或在线保存入口，上传文件到 GitHub 后仍需完成关联和生成步骤。
 
@@ -78,6 +80,7 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 ├── assets/note-renderer.js             # 弹窗与独立页共用的 Markdown 渲染
 ├── assets/note-page.js                 # 独立页的数据与导航
 ├── assets/note-page.css                # 独立页排版
+├── assets/note-collections.css         # 多份笔记的选择与布局
 ├── assets/notes-data.js                # 由 Markdown 生成的笔记数据
 ├── assets/reading-data.js              # 由仓库记录生成的阅读状态
 ├── data/reading-status.json            # 正式阅读状态，按论文 key 维护
@@ -89,7 +92,8 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 ├── notes/
 │   ├── TEMPLATE.md                     # 阅读笔记模板
 │   ├── index.json                      # 论文与笔记的关联
-│   └── demo-autodft.md                 # 明确标注的界面演示笔记
+│   ├── demo-autodft.md                 # 图文排版演示笔记
+│   └── demo-autodft-ideas.md           # 多笔记切换演示
 ├── scripts/
 │   ├── prepare_display.py              # 清理展示页中的本地附件路径
 │   └── build_notes.py                  # 生成可离线使用的笔记数据
@@ -103,6 +107,7 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 
 - [x] 阅读状态：未读、阅读中、已读（仓库文件保存）。
 - [x] 分页列表与 Markdown 笔记弹窗，支持图片及短视频。
+- [x] 同一论文的多份笔记、笔记切换与独立链接。
 - [ ] 论文创新点与主要贡献。
 - [ ] 实验依据、局限性与个人思考。
 - [ ] 复现状态与复现笔记。
