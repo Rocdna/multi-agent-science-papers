@@ -28,6 +28,8 @@
 
 Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/responsive.css`。下载和部署时保留完整目录即可，无需构建命令。
 
+文献目录和独立笔记页右上方提供“浅色、深色、跟随系统”主题选择，默认跟随系统，系统切换明暗时页面会自动更新。手动选择保存在当前浏览器，同一站点的页面与标签页共享设置；这是显示偏好，不影响仓库中的阅读状态。
+
 ## 分页、阅读状态与笔记
 
 文献先按全部数据搜索、筛选和排序，再分页显示；默认在类别内按年份从旧到新，同年按名称排列，重置后也恢复该顺序。默认电脑每页 20 篇、平板 12 篇、手机 10 篇，也可手动调整。打开和关闭笔记不会重置当前分页和筛选。
@@ -75,6 +77,8 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 ├── index.html                          # 可离线打开的交互展示
 ├── note.html                           # 独立笔记阅读页
 ├── assets/responsive.css               # 手机、平板与触摸交互样式
+├── assets/theme.js                     # 主题偏好、系统变化与页面同步
+├── assets/theme.css                    # 浅色与深色配色
 ├── assets/reading.css                  # 分页、阅读状态与笔记样式
 ├── assets/literature.js                # 文献列表与笔记弹窗逻辑
 ├── assets/note-renderer.js             # 弹窗与独立页共用的 Markdown 渲染

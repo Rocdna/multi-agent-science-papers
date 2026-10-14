@@ -109,6 +109,8 @@ python scripts/prepare_display.py --source "D:/zotero_doc/Multi-agent_AI材料�
 
 分页、阅读状态和笔记交互由 `assets/literature.js` 维护，样式位于 `assets/reading.css`；Markdown 渲染和 HTML 清理依赖 `vendor/marked/` 与 `vendor/dompurify/`。这些文件同样需要随站点部署。
 
+文献目录和独立笔记页共用 `assets/theme.js`、`assets/theme.css`。主题脚本在 `<head>` 中、样式之前同步加载，避免深色页面先闪现浅色；主题样式在其他样式之后加载。重新生成页面时保留主题选择入口及这两个依赖。默认跟随系统，选择保存在浏览器的 `literature-color-mode` 中，不写入论文的正式阅读记录；新增组件应使用现有颜色变量，并检查浅色与深色下的可读性。
+
 新增筛选条件优先复用当前 `filter-panel`，确保手机抽屉与电脑工具栏共享同一控件。重新从外部工具生成 HTML 时，还需保留图标、上述依赖、筛选抽屉结构和已选条件显示逻辑；现有路径清理脚本不会自动恢复这些界面改动。
 
 界面修改后，至少检查 320px、390px、820px、1024px 和 1440px 的布局，以及筛选、排序、重置、详情展开和抽屉关闭。实际手机浏览器的触摸、软键盘和缩放行为可进一步在设备上检查。

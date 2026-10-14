@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Multi-agent 与 AI 材料文献的独立笔记阅读页。">
   <meta name="theme-color" content="#245ed8">
+  <script src="assets/theme.js"></script>
   <link rel="icon" href="favicon.ico?v=2" sizes="16x16 32x32 48x48">
   <link rel="icon" href="favicon-32x32.png?v=2" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2" sizes="180x180">
@@ -12,11 +13,12 @@
   <link rel="stylesheet" href="assets/reading.css"><link rel="stylesheet" href="assets/note-collections.css">
   <link rel="stylesheet" href="assets/note-page.css">
   <title>阅读笔记 · Multi-agent × AI 材料</title>
+  <link rel="stylesheet" href="assets/theme.css">
 </head>
 <body>
   <div class="reader-topline"></div>
   <main class="note-page">
-    <nav class="reader-navigation" aria-label="阅读导航"><a href="index.html">← 返回文献目录</a><span>READING NOTES</span></nav>
+    <nav class="reader-navigation" aria-label="阅读导航"><a href="index.html">← 返回文献目录</a><span>READING NOTES</span><label class="theme-switcher">主题<select class="form-select" data-theme-select aria-label="网站主题"><option value="system">跟随系统</option><option value="light">浅色</option><option value="dark">深色</option></select></label></nav>
     <section id="note-error" class="alert alert-warning" role="status" hidden>没有找到这份笔记。请返回文献目录，选择有笔记的论文。</section>
     <section id="note-page-content" class="reader-card" hidden>
       <header class="note-page-header">
