@@ -38,7 +38,6 @@
 .note-meta{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;margin-top:6px;font-size:12px;color:var(--muted)}
 .note-modal .btn-close{flex-shrink:0;min-width:28px;min-height:28px;margin:0 0 0 auto}
 .note-modal .modal-body{padding:0;overscroll-behavior:contain}
-.note-demo-warning{margin:18px 24px 0;padding:10px 14px;border-radius:8px;background:#fff5df;color:#865b18;font-size:13px;line-height:1.7}
 .note-layout{display:grid;grid-template-columns:180px minmax(0,1fr);gap:28px;padding:28px 24px 36px}
 .note-directory{min-width:0;position:sticky;top:20px}
 .note-directory summary{font-size:13px;font-weight:600;color:var(--muted);margin-bottom:12px}
@@ -88,7 +87,6 @@
   .note-modal .modal-header{padding:14px 16px}
   .note-modal .modal-title{font-size:17px}
   .note-meta{font-size:12px;gap:6px 12px}
-  .note-demo-warning{margin:16px 16px 0}
   .note-layout{padding:20px 16px 32px}
   .note-content{font-size:16px;line-height:1.85}
   .note-content h1{font-size:24px}

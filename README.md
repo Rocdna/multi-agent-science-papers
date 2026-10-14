@@ -38,7 +38,7 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 
 每篇文献可以关联多份 Markdown 笔记，卡片只显示一个“笔记 · 数量”入口。默认打开最近更新的笔记；电脑在侧栏切换，手机和平板在顶部选择。笔记用 Bootstrap 弹窗展示，手机为全屏，支持章节目录、图片放大和原生短视频播放器。
 
-“独立打开”进入真正的阅读页 `note.html?id=论文key&note=笔记id`，方便分享和长时间阅读；独立页同样可以切换笔记。此前仅含论文 key 的链接仍可使用，默认打开最近更新的一份。弹窗与独立页共用笔记和渲染逻辑。AutoDFT 的两份演示笔记仅供查看布局，不是真实阅读记录。
+“独立打开”进入真正的阅读页 `note.html?id=论文key&note=笔记id`，方便分享和长时间阅读；独立页同样可以切换笔记。此前仅含论文 key 的链接仍可使用，默认打开最近更新的一份。弹窗与独立页共用笔记和渲染逻辑。
 
 真实笔记使用 UTF-8 编码的 `.md` 文件，放在 `notes/` 中，通过 `notes/index.json` 关联论文的稳定 `key`。更新笔记或阅读状态后运行 `python scripts/build_notes.py`，生成可离线使用的笔记与阅读状态数据。文字和随仓库发布的附件属于公开内容；当前没有网页上传或在线保存入口，上传文件到 GitHub 后仍需完成关联和生成步骤。
 
@@ -96,8 +96,7 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 ├── notes/
 │   ├── TEMPLATE.md                     # 阅读笔记模板
 │   ├── index.json                      # 论文与笔记的关联
-│   ├── demo-autodft.md                 # 图文排版演示笔记
-│   └── demo-autodft-ideas.md           # 多笔记切换演示
+│   └── 2026-MARS.md                    # MARS 方法笔记
 ├── scripts/
 │   ├── prepare_display.py              # 清理展示页中的本地附件路径
 │   └── build_notes.py                  # 生成可离线使用的笔记数据

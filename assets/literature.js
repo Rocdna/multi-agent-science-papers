@@ -32,9 +32,8 @@
     if (notes.length) {
       const button = document.createElement('button');
       button.type = 'button'; button.className = 'note-button';
-      const demoOnly = notes.every(note => note.demo);
-      button.textContent = '笔记 · ' + notes.length + (demoOnly ? '（演示）' : '');
-      button.setAttribute('aria-label', paper.name + ' 的 ' + notes.length + ' 份' + (demoOnly ? '演示笔记' : '笔记'));
+      button.textContent = '笔记 · ' + notes.length;
+      button.setAttribute('aria-label', paper.name + ' 的 ' + notes.length + ' 份笔记');
       button.addEventListener('click', () => openNote(paper.key, button));
       row.querySelector('.resource').append(button);
     }
@@ -75,7 +74,7 @@
     if (controls.topic.value) labels.push('方向：' + controls.topic.value);
     if (controls.code.value) labels.push('代码：' + controls.code.selectedOptions[0].text);
     if (controls.reading.value) labels.push('阅读：' + statusLabels[controls.reading.value]);
-    if (controls.notes.checked) labels.push('仅看有笔记（含演示）');
+    if (controls.notes.checked) labels.push('仅看有笔记');
     if (controls.sort.value !== 'group-asc') labels.push('排序：' + controls.sort.selectedOptions[0].text);
     byId('active-filters').textContent = labels.join(' · ');
     byId('active-filters').hidden = labels.length === 0;
@@ -164,7 +163,6 @@
     noteTrigger = trigger;
     byId('note-title').textContent = paper.name + ' · ' + note.title;
     byId('note-updated').textContent = '更新于 ' + note.updated;
-    byId('note-demo-warning').hidden = !note.demo;
     byId('note-paper-link').href = paper.paper; byId('note-source-link').href = note.file;
     LiteratureNoteRenderer.switcher(key, note.id, id => openNote(key, trigger, id));
     LiteratureNoteRenderer.render(note);

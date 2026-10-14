@@ -20,10 +20,10 @@
       button.type = 'button'; button.className = 'note-choice'; button.dataset.noteId = note.id;
       button.setAttribute('aria-current', String(note.id === activeId));
       const title = document.createElement('span'); title.textContent = note.title;
-      const meta = document.createElement('small'); meta.textContent = note.updated + (note.demo ? ' · 演示' : '');
+      const meta = document.createElement('small'); meta.textContent = note.updated;
       button.append(title, meta); button.addEventListener('click', () => onSelect(note.id));
       menu.append(button);
-      dropdown.add(new Option(note.title + (note.demo && !note.title.includes('演示') ? '（演示）' : '') + ' · ' + note.updated, note.id));
+      dropdown.add(new Option(note.title + ' · ' + note.updated, note.id));
     });
     dropdown.value = activeId;
     dropdown.onchange = () => onSelect(dropdown.value);

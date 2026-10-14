@@ -64,7 +64,6 @@ a{color:var(--blue)}
 [data-bs-theme="dark"] .reading-status[data-status="reading"]{background:#203c63;border-color:#4c6da0;color:#b4d1ff}
 [data-bs-theme="dark"] .reading-status[data-status="read"]{background:#203f33;border-color:#3d6e54;color:#a1ddb6}
 [data-bs-theme="dark"] .note-button{background:#3b2d56;border-color:#725a99;color:#d7bfff}
-[data-bs-theme="dark"] .note-demo-warning{background:#42321b;color:#f2d197}
 [data-bs-theme="dark"] .note-content blockquote{background:var(--theme-surface-soft);color:#c4d2e6;border-color:#719cec}
 [data-bs-theme="dark"] .note-content pre{background:#111c2c;color:var(--ink)}
 [data-bs-theme="dark"] .note-content td,

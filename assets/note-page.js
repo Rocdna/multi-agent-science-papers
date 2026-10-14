@@ -13,7 +13,6 @@
     byId('note-updated').textContent = '更新于 ' + note.updated;
     byId('note-paper-link').href = note.paper.url;
     byId('note-source-link').href = note.file;
-    byId('note-demo-warning').hidden = !note.demo;
     const labels = {unread: '未读', reading: '阅读中', read: '已读'};
     const saved = literatureReadingStatuses[key];
     const status = Object.hasOwn(labels, saved) ? saved : 'unread';
