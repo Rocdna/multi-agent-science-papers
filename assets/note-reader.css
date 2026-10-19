@@ -1,0 +1,91 @@
+/* Reading controls use only static content and optional browser preferences. */
+[hidden]{display:none!important}
+.reader-paper-details{margin-top:12px;color:var(--muted);font-size:13px}
+.reader-paper-details summary{cursor:pointer;min-height:32px;display:list-item;list-style-position:inside}
+.reader-paper-details[open] summary{margin-bottom:10px}
+.reader-paper-details .reader-paper-title{margin:0 0 8px}
+.note-reader-toolbar{display:flex;align-items:center;justify-content:flex-end;padding:12px 24px 0}
+.note-font-options{display:flex;gap:4px;align-items:center;color:var(--muted);font-size:12px}
+.note-font-options>span{margin-right:6px}
+.note-font-options button,.note-toc-close{border:1px solid transparent;border-radius:7px;padding:6px 10px;min-height:36px;background:transparent;color:var(--muted);font:inherit;cursor:pointer}
+.note-font-options button[aria-pressed="true"]{color:var(--blue);border-color:var(--line);background:var(--theme-accent-soft)}
+.note-font-options button:hover,.note-toc-close:hover{color:var(--blue);background:var(--theme-accent-soft)}
+.note-layout{padding-top:18px}
+.note-content{font-family:system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.9;word-break:normal}
+.note-content[data-font-size="large"]{font-size:18px}
+.note-content[data-font-size="larger"]{font-size:20px}
+.note-content h2{font-size:1.35em;font-weight:650;line-height:1.5;margin-top:2em;scroll-margin-top:24px}
+.note-content h3{font-size:1.13em;font-weight:600;line-height:1.6;scroll-margin-top:24px}
+.note-content>h2:first-child{margin-top:0}
+.note-content li{padding-left:2px}
+.note-content li>p{margin-bottom:10px}
+.note-content strong{font-weight:650}
+.note-content :is(h2,h3):focus{outline:none}
+.note-content a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:color-mix(in srgb,currentColor 40%,transparent)}
+.note-info-details{margin:24px 0;padding:12px 16px;border:1px solid var(--line);border-radius:8px}
+.note-info-details>summary{cursor:pointer;color:var(--muted);list-style-position:inside;min-height:28px}
+.note-info-details>summary h2{display:inline;font-size:1em;font-weight:500;margin:0;color:var(--muted)}
+.note-info-details[open]>summary{margin-bottom:14px}
+.note-info-details .note-table-wrap{margin:8px 0 0}
+.note-toc{gap:3px}
+.note-toc a{padding:8px 10px;border-left:2px solid transparent;border-radius:0 6px 6px 0;line-height:1.65}
+.note-toc a[data-level="2"]{font-weight:600}
+.note-toc a[data-level="3"]{padding-left:22px;font-size:12px}
+.note-toc a:hover{background:var(--theme-surface-soft);color:var(--blue);text-decoration:none}
+.note-toc a[aria-current="location"]{color:var(--blue);border-left-color:var(--blue);background:var(--theme-accent-soft)}
+.note-table-wrap:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.note-content .note-table-hint{font-size:12px;color:var(--muted);margin:18px 0 -12px}
+.note-content :is(td,th){font-size:.9em;line-height:1.8}
+.note-toc-button{display:none}
+.note-toc-dialog{width:min(520px,calc(100vw - 24px));max-height:75dvh;margin:auto auto 16px;padding:0;border:1px solid var(--line);border-radius:16px;background:var(--theme-surface);color:var(--ink);box-shadow:0 14px 50px #10172230}
+.note-toc-dialog::backdrop{background:#10172266}
+.note-toc-dialog header{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0;padding:12px 16px;background:var(--theme-surface);border-bottom:1px solid var(--line);z-index:1}
+.note-toc-dialog h2{font-size:17px;margin:0}
+.note-toc-close{min-height:44px;font-size:14px}
+.note-toc-dialog .note-toc{padding:12px 16px 20px;display:flex}
+.note-toc-dialog .note-toc a{min-height:44px;display:flex;align-items:center;font-size:14px}
+:is(.note-font-options button,.note-toc-button,.note-toc-close,.note-toc a):focus-visible{outline:3px solid #87aaff;outline-offset:2px}
+@media(min-width:992px){
+  .note-layout{grid-template-columns:210px minmax(0,1fr);gap:26px}
+  .note-content{max-width:700px}
+  .note-layout>aside{max-height:calc(100dvh - 64px)}
+  .note-modal .note-layout>aside{max-height:calc(100dvh - 200px)}
+}
+@media(max-width:991.98px){
+  .note-layout>aside{display:none}
+  .note-layout{gap:0;padding-top:16px;padding-bottom:90px}
+  .note-reader-toolbar{padding:8px 22px 0}
+  .note-font-options button{min-height:44px;padding:7px 12px}
+  .note-toc-button{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom));right:16px;z-index:20;display:flex;align-items:center;gap:10px;max-width:min(290px,calc(100vw - 32px));min-height:46px;padding:10px 16px;border:1px solid var(--line);border-radius:24px;background:var(--theme-surface);color:var(--blue);box-shadow:0 3px 18px #10172220;font-size:14px}
+  .note-toc-button>span:first-child{font-weight:650;flex-shrink:0}
+  #note-current-section{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);font-size:12px}
+  .note-content .note-wide-table{min-width:480px}
+  .note-content .note-facts-table thead{display:none}
+  .note-content .note-facts-table :is(tbody,tr,td){display:block;width:100%!important}
+  .note-content .note-facts-table tr{border-bottom:1px solid var(--line);padding:10px 0}
+  .note-content .note-facts-table td{border:0;padding:3px 0}
+  .note-content .note-facts-table td:first-child{font-weight:600;color:var(--muted);font-size:.8em}
+}
+@media(max-width:767.98px){
+  .note-page-header{padding:20px 16px 12px}
+  .note-page-header h1{font-size:22px;line-height:1.5;margin-bottom:8px}
+  .note-reader-toolbar{padding:6px 16px 0}
+  .note-content{line-height:1.9}
+  .note-content blockquote{padding:12px 14px;margin-top:0}
+  .note-content :is(ul,ol){padding-left:1.5em}
+  .note-content :is(td,th){padding:9px 10px}
+  .note-toc-dialog{margin-bottom:calc(12px + env(safe-area-inset-bottom))}
+  #note-current-section{display:none}
+}
+@media print{
+  .note-reader-toolbar,.note-toc-button,.note-toc-dialog,.note-table-hint{display:none!important}
+  .reader-paper-details>summary{display:none}
+  .note-layout>aside{display:none}
+  .note-layout{padding-bottom:0}
+  .note-content{max-width:none}
+  .note-table-wrap{overflow:visible}
+  .note-content .note-wide-table{min-width:0}
+  .note-content tr{break-inside:avoid}
+  .note-info-details{border:0;padding:0}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}

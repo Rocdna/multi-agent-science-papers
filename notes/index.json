@@ -4,7 +4,8 @@
       "id": "main",
       "file": "notes/2026-MARS.md",
       "title": "MARS：知识图谱与混合 RAG 方法笔记",
-      "updated": "2026-10-14"
+      "updated": "2026-10-16",
+      "updateSummary": "重写后半段的材料原理、实验结果与机器人操作说明，解释术语并精简重复内容。"
     }
   ]
 }

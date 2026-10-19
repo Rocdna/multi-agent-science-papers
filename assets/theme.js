@@ -18,7 +18,7 @@
       button.setAttribute('aria-pressed', String(button.dataset.themeMode === effective));
     });
     const color = document.querySelector('meta[name="theme-color"]');
-    if (color) color.content = effective === 'dark' ? '#101722' : '#245ed8';
+    if (color) color.content = effective === 'dark' ? '#0d1117' : '#ffffff';
   }
 
   apply();

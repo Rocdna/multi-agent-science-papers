@@ -1,0 +1,121 @@
+/* Keep all rating systems visible while prioritizing the research summary. */
+.catalog>table{table-layout:fixed}
+.catalog thead th:nth-child(1){width:31%}
+.catalog thead th:nth-child(2){width:14%}
+.catalog thead th:nth-child(3){width:25%}
+.catalog thead th:nth-child(4){width:10%}
+.catalog thead th:nth-child(5){width:8%}
+.catalog thead th:nth-child(6){width:12%}
+.catalog .paper-row>td{padding:14px;line-height:1.65}
+.catalog .paper{display:table-cell}
+.catalog .rownum{display:none}
+.catalog .title-button{font-size:17px;line-height:1.5}
+.catalog .description{font-size:14px;line-height:1.75;color:var(--ink);margin-top:7px}
+.paper-tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:7px;font-size:12px;color:var(--muted)}
+.paper-kind{padding:1px 7px;border:1px solid var(--line);border-radius:4px}
+.paper-topic{display:inline-flex;align-items:center;min-height:24px;line-height:1.5;padding:2px 8px;border:1px solid transparent;border-radius:5px;font-weight:550}
+.paper-topic[data-topic="知识工程"],#topic[data-topic="知识工程"]{background:#f0ebfa;color:#6b4098;border-color:#dac9ee}
+.paper-topic[data-topic="假设生成"],#topic[data-topic="假设生成"]{background:#fff2df;color:#875010;border-color:#edd2a6}
+.paper-topic[data-topic="计算执行"],#topic[data-topic="计算执行"]{background:#eaf1ff;color:#2857a7;border-color:#c4d5f4}
+.paper-topic[data-topic="闭环发现"],#topic[data-topic="闭环发现"]{background:#e5f4ef;color:#23664f;border-color:#b9ddcd}
+.paper-topic[data-topic="通用科研"],#topic[data-topic="通用科研"]{background:#eef0f5;color:#535b73;border-color:#d2d7e2}
+#topic option{background:var(--theme-surface);color:var(--ink)}
+:root[data-bs-theme="dark"] .paper-topic[data-topic="知识工程"],:root[data-bs-theme="dark"] #topic[data-topic="知识工程"]{background:#392b50;color:#ddc5ff;border-color:#6b5389}
+:root[data-bs-theme="dark"] .paper-topic[data-topic="假设生成"],:root[data-bs-theme="dark"] #topic[data-topic="假设生成"]{background:#48351e;color:#f3d3a1;border-color:#80603b}
+:root[data-bs-theme="dark"] .paper-topic[data-topic="计算执行"],:root[data-bs-theme="dark"] #topic[data-topic="计算执行"]{background:#203c63;color:#c3d9ff;border-color:#4c6da0}
+:root[data-bs-theme="dark"] .paper-topic[data-topic="闭环发现"],:root[data-bs-theme="dark"] #topic[data-topic="闭环发现"]{background:#203f36;color:#b1e1cc;border-color:#3d6e59}
+:root[data-bs-theme="dark"] .paper-topic[data-topic="通用科研"],:root[data-bs-theme="dark"] #topic[data-topic="通用科研"]{background:#2d3548;color:#ced5e8;border-color:#535f78}
+.catalog .publication strong{font-size:14px;line-height:1.55;font-weight:600}
+.catalog .publication small{margin-top:6px;font-size:12px}
+.publication-index{font-weight:600}
+.rating-stack{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.rating-badge{display:inline-flex;align-items:center;min-height:29px;padding:3px 8px;border:1px solid var(--line);border-radius:6px;font-size:13px;font-weight:650;line-height:1.5;white-space:normal}
+.rating-ccf-ranked{background:#eaf0ff;color:#2457b9;border-color:#bdd0f4}
+.rating-jcr-ranked{background:#eaf5f1;color:#216450;border-color:#c0ddd0}
+.rating-cas-ranked{background:#fff4e5;color:#855016;border-color:#ecd3b0}
+.rating-neutral{background:var(--theme-surface-soft);color:var(--muted);font-weight:400}
+.catalog .rating-version{font-size:11px;line-height:1.65;margin-top:8px;color:var(--muted)}
+.catalog .code-cell>.badge{font-size:12px;white-space:normal}
+.catalog .code-cell small{font-size:11px;line-height:1.65}
+.catalog .resource a{display:inline-flex;align-items:center;min-height:32px;line-height:1.5;margin-right:9px}
+.catalog .note-button{min-height:34px;font-size:12px;margin-top:5px}
+.catalog .reading-status{padding:4px 7px;min-height:28px;font-size:12px}
+.catalog .detail{margin-left:0}
+.catalog .fulltitle{line-height:1.65}
+.rating-filters{grid-column:1/-1;grid-row:2;width:100%;min-width:0;margin:0}
+.rating-filters>summary{font-size:13px;color:var(--blue);cursor:pointer;min-height:32px;line-height:32px;list-style-position:inside}
+#rating-filter-summary{font-size:12px;color:var(--muted);margin-left:8px}
+.rating-filter-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding-top:10px}
+.rating-filter-hint{font-size:12px;line-height:1.8;color:var(--muted);margin:10px 0 0}
+.active-filters{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:8px 0;background:transparent}
+.filter-chip{display:inline-flex;align-items:center;gap:10px;max-width:100%;min-height:36px;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--theme-surface);color:var(--ink);font-size:12px;text-align:left;line-height:1.6;cursor:pointer}
+.filter-chip>span:first-child{overflow-wrap:anywhere;min-width:0}
+.filter-chip>span:last-child{font-size:18px;color:var(--muted);flex-shrink:0}
+.filter-chip:hover{border-color:var(--blue);color:var(--blue)}
+.empty-title{font-size:18px;font-weight:600;color:var(--ink);margin-bottom:12px}
+#empty-explanation{max-width:700px;margin:0 auto 20px;line-height:1.8;overflow-wrap:anywhere}
+.empty-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+.empty-actions button,.rating-dialog-close{min-height:44px;padding:8px 14px;border:1px solid var(--line);border-radius:6px;background:var(--theme-surface);color:var(--blue);font-size:14px;cursor:pointer}
+button.rating-badge{font-family:inherit;text-align:left;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:4px;text-decoration-color:color-mix(in srgb,currentColor 35%,transparent)}
+button.rating-badge:hover{text-decoration-style:solid;border-color:currentColor}
+.rating-dialog{width:min(540px,calc(100vw - 28px));max-height:85dvh;padding:0;border:1px solid var(--line);border-radius:12px;background:var(--theme-surface);color:var(--ink);box-shadow:0 20px 70px #102b3430}
+.rating-dialog::backdrop{background:#102b3470}
+.rating-dialog-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;margin:0;border-bottom:1px solid var(--line)}
+.rating-dialog-header h2{font-size:18px;line-height:1.5;margin:0}
+.rating-dialog-body{padding:20px;font-size:14px;line-height:1.85}
+.rating-paper{color:var(--muted);font-size:13px}
+.rating-dialog dl{display:grid;grid-template-columns:80px minmax(0,1fr);gap:8px 14px;margin:20px 0}
+.rating-dialog dt{color:var(--muted);font-weight:400}
+.rating-dialog dd{margin:0;overflow-wrap:anywhere}
+.rating-dialog h3{font-size:14px;font-weight:600;margin:20px 0 8px}
+#rating-sources{display:flex;flex-direction:column;gap:6px;color:var(--muted)}
+#rating-sources a{display:flex;align-items:center;min-height:40px;color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+.paper-returned{outline:2px solid var(--blue);outline-offset:-2px}
+:is(.filter-chip,.rating-badge,.empty-actions button,.rating-dialog-close):focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+@media(max-width:991.98px){.filter-chip{min-height:44px;font-size:13px}.rating-dialog{margin:auto}}
+@media(min-width:992px){
+  .filter-panel .note-filter{grid-column:5;grid-row:1}
+  .filter-panel .reset{grid-column:6;grid-row:1}
+}
+:root[data-bs-theme="dark"] .rating-ccf-ranked{background:#203c63;color:#c3d9ff;border-color:#4c6da0}
+:root[data-bs-theme="dark"] .rating-jcr-ranked{background:#203f36;color:#b1e1cc;border-color:#3d6e59}
+:root[data-bs-theme="dark"] .rating-cas-ranked{background:#48351e;color:#f3d3a1;border-color:#80603b}
+@media(min-width:992px) and (max-width:1199.98px){
+  .catalog .paper-row>td,.catalog thead th{padding-left:10px;padding-right:10px}
+  .catalog .title-button{font-size:16px}
+  .rating-badge{font-size:12px;padding:3px 6px}
+}
+@media(max-width:991.98px){
+  .catalog .paper-row{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"title reading" "publication publication" "rating rating" "summary summary" "tags code" "resources resources";gap:10px 12px;padding:18px 16px}
+  .catalog .paper-row>td{padding:0;width:auto;min-width:0;border:0}
+  .catalog .paper-row>td::before{display:none}
+  .catalog .paper,.catalog .paper-main{display:contents}
+  .catalog .title-button{grid-area:title;min-height:44px;font-size:18px;align-self:center;line-height:1.5}
+  .catalog .description{grid-area:summary;margin:2px 0 0;font-size:14px;line-height:1.8}
+  .catalog .paper-tags{grid-area:tags;align-self:center;margin:0;gap:7px}
+  .catalog .publication{grid-area:publication;display:flex;align-items:baseline;flex-wrap:wrap;gap:5px 9px}
+  .catalog .publication strong{font-size:13px;font-weight:500;color:var(--muted)}
+  .catalog .publication small{display:inline;margin:0;font-size:12px}
+  .catalog .ratings-cell{grid-area:rating;padding:0 0 10px;border-bottom:1px solid var(--line)}
+  .catalog .rating-badge{font-size:13px;min-height:28px;padding:3px 7px}
+  .catalog .rating-version{font-size:10px;margin-top:6px}
+  .catalog .code-cell{grid-area:code;text-align:right;align-self:center}
+  .catalog .code-cell small{display:none}
+  .catalog .reading-cell{grid-area:reading;align-self:center}
+  .catalog .reading-status{font-size:11px;padding:3px 7px;min-height:26px}
+  .catalog .resource{grid-area:resources;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:2px}
+  .catalog .resource a,.catalog .resource .note-button{min-height:44px;padding:6px 12px;margin:0;font-size:13px}
+  .catalog .detail{padding:18px 16px}
+  .rating-filters>summary{min-height:44px;line-height:44px;font-size:15px}
+  .rating-filter-fields{grid-template-columns:minmax(0,1fr);gap:18px}
+}
+@media print{
+  .catalog .paper-row{display:table-row}
+  .catalog .paper-row>td,.catalog .paper{display:table-cell;padding:10px 8px}
+  .catalog .paper-main{display:block}
+  .catalog .description{font-size:11px}
+  .catalog .title-button{font-size:12px;min-height:0}
+  .catalog .rating-badge{font-size:10px;min-height:0;padding:1px 4px}
+  .catalog .resource{display:none!important}
+  .catalog .paper-tags{font-size:10px}
+}

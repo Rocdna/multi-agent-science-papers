@@ -17,7 +17,7 @@
   },
   "TLYWIK4Q": {
     "name": "LLEMA",
-    "status": "unread"
+    "status": "reading"
   },
   "QAQKPNWD": {
     "name": "MAESTRO",
@@ -25,7 +25,7 @@
   },
   "VEPBCVT3": {
     "name": "MARS",
-    "status": "unread"
+    "status": "reading"
   },
   "6U4QQ8NA": {
     "name": "MASTER",
@@ -61,7 +61,7 @@
   },
   "9GWZ8G79": {
     "name": "MatAgent",
-    "status": "unread"
+    "status": "read"
   },
   "ILCSYZDY": {
     "name": "Perovskite-LLM",
@@ -109,10 +109,14 @@
   },
   "AGAN7FLD": {
     "name": "MADE",
-    "status": "unread"
+    "status": "reading"
   },
   "6BRVMG2S": {
     "name": "SciAgentGym",
+    "status": "unread"
+  },
+  "MWYYFXHF": {
+    "name": "ChemGraph",
     "status": "unread"
   }
 }

@@ -4,9 +4,9 @@ const literatureReadingStatuses = {
   "W5N9QU8N": "unread",
   "EPTEEW67": "unread",
   "YTLMEHCI": "unread",
-  "TLYWIK4Q": "unread",
+  "TLYWIK4Q": "reading",
   "QAQKPNWD": "unread",
-  "VEPBCVT3": "unread",
+  "VEPBCVT3": "reading",
   "6U4QQ8NA": "unread",
   "62JE4APB": "unread",
   "74FJ8D9G": "unread",
@@ -15,7 +15,7 @@ const literatureReadingStatuses = {
   "AAKNE5E4": "unread",
   "NZEE9KQ7": "unread",
   "AJ2BNI5M": "unread",
-  "9GWZ8G79": "unread",
+  "9GWZ8G79": "read",
   "ILCSYZDY": "unread",
   "2MZNLYUP": "unread",
   "MPCAT8WK": "unread",
@@ -27,6 +27,7 @@ const literatureReadingStatuses = {
   "ISLQT4B2": "unread",
   "Z8E692LK": "unread",
   "8DVZXF57": "unread",
-  "AGAN7FLD": "unread",
-  "6BRVMG2S": "unread"
+  "AGAN7FLD": "reading",
+  "6BRVMG2S": "unread",
+  "MWYYFXHF": "unread"
 };

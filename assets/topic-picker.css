@@ -1,0 +1,42 @@
+/* Topic definitions are available to mouse, keyboard and touch users. */
+.topic-picker{position:relative;min-width:0;--topic-color:var(--muted)}
+.topic-picker [data-topic="知识工程"]{--topic-color:#8250b5}
+.topic-picker [data-topic="假设生成"]{--topic-color:#b96b12}
+.topic-picker [data-topic="计算执行"]{--topic-color:#0969da}
+.topic-picker [data-topic="闭环发现"]{--topic-color:#238363}
+.topic-picker [data-topic="通用科研"]{--topic-color:#64748b}
+:root[data-bs-theme="dark"] .topic-picker [data-topic="知识工程"]{--topic-color:#c4a0ed}
+:root[data-bs-theme="dark"] .topic-picker [data-topic="假设生成"]{--topic-color:#eeb968}
+:root[data-bs-theme="dark"] .topic-picker [data-topic="计算执行"]{--topic-color:#79b8ff}
+:root[data-bs-theme="dark"] .topic-picker [data-topic="闭环发现"]{--topic-color:#70d2ac}
+:root[data-bs-theme="dark"] .topic-picker [data-topic="通用科研"]{--topic-color:#a6b4ce}
+.topic-trigger{display:flex;align-items:center;gap:9px;width:100%;min-height:44px;padding:9px 12px;border:1px solid var(--line);border-radius:6px;background:var(--theme-surface);color:var(--ink);font:inherit;font-size:14px;line-height:1.5;text-align:left;cursor:pointer}
+.topic-trigger:hover{border-color:var(--blue)}
+.topic-trigger[aria-expanded="true"]{border-color:var(--blue);box-shadow:0 0 0 2px var(--theme-accent-soft)}
+.topic-trigger:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.topic-dot{display:inline-block;width:8px;height:8px;flex:0 0 8px;border-radius:50%;background:var(--topic-color)}
+.topic-value{flex:1;min-width:0}
+.topic-chevron{width:7px;height:7px;flex:0 0 7px;border:solid var(--muted);border-width:0 1.5px 1.5px 0;transform:translateY(-2px) rotate(45deg);margin-left:auto}
+.topic-trigger[aria-expanded="true"] .topic-chevron{transform:translateY(2px) rotate(225deg)}
+.topic-options{position:fixed;z-index:1050;padding:5px;border:1px solid var(--line);border-radius:8px;background:var(--theme-surface);color:var(--ink);box-shadow:0 8px 28px #10203026;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.topic-option{padding:10px 11px;border:1px solid transparent;border-radius:5px;cursor:pointer;line-height:1.5;font-size:14px}
+.topic-option[data-active="true"]{background:var(--theme-surface-soft);border-color:var(--line)}
+.topic-option[aria-selected="true"]{color:var(--blue)}
+.topic-option-heading{display:flex;align-items:center;gap:9px;min-height:22px}
+.topic-option-heading>span:nth-child(2){flex:1}
+.topic-check{font-size:15px;visibility:hidden;color:var(--blue)}
+.topic-option[aria-selected="true"] .topic-check{visibility:visible}
+.topic-option-description{display:none}
+.topic-tooltip{position:fixed;z-index:1060;width:280px;max-width:calc(100vw - 24px);padding:14px 16px;border:1px solid var(--line);border-left:3px solid var(--topic-color);border-radius:8px;background:var(--theme-surface);color:var(--ink);box-shadow:0 8px 28px #10203026;font-size:13px;line-height:1.8}
+.topic-tooltip strong{font-size:14px;font-weight:600}
+.topic-tooltip p{margin:5px 0 0;color:var(--muted)}
+@media(max-width:991.98px),(hover:none),(pointer:coarse){
+  .topic-option-description{display:block;margin:5px 0 0 17px;font-size:12px;line-height:1.8;color:var(--muted)}
+}
+@media(max-width:991.98px){
+  .topic-trigger{font-size:15px;min-height:46px}
+  .topic-options{position:relative;width:100%;max-height:48dvh;margin-top:8px;box-shadow:none}
+  .topic-option{padding:10px;font-size:14px}
+  .topic-tooltip{display:none}
+}
+@media print{.topic-options,.topic-tooltip{display:none!important}}

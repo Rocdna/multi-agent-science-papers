@@ -1,14 +1,14 @@
 :root{
-  --theme-surface:#fff;--theme-surface-soft:#f8faff;--theme-raised:#f2f5fa;
-  --theme-accent-soft:#eaf0ff;--theme-border:#e0e7f0;
-  --ink:#17263a;--muted:#607086;--blue:#245ed8;--line:#e0e7f0;--paper:#fff;--bg:#f2f5fa;
+  --theme-surface:#fff;--theme-surface-soft:#f6f8fa;--theme-raised:#eaeef2;
+  --theme-accent-soft:#ddf4ff;--theme-border:#d1d9e0;
+  --ink:#1f2328;--muted:#59636e;--blue:#0969da;--line:#d1d9e0;--paper:#fff;--bg:#fff;
   color-scheme:light;
 }
 :root[data-bs-theme="dark"]{
-  --theme-surface:#182334;--theme-surface-soft:#1d2a3e;--theme-raised:#26354a;
-  --theme-accent-soft:#203756;--theme-border:#34465f;
-  --ink:#e5edf9;--muted:#a9b9cf;--blue:#91b8ff;--line:#34465f;--paper:#182334;--bg:#101722;
-  --bs-body-color:#e5edf9;--bs-body-bg:#101722;--bs-border-color:#34465f;
+  --theme-surface:#0d1117;--theme-surface-soft:#151b23;--theme-raised:#212830;
+  --theme-accent-soft:#132b45;--theme-border:#30363d;
+  --ink:#e6edf3;--muted:#9da7b3;--blue:#79b8ff;--line:#30363d;--paper:#0d1117;--bg:#0d1117;
+  --bs-body-color:#e6edf3;--bs-body-bg:#0d1117;--bs-border-color:#30363d;
   color-scheme:dark;
 }
 body{background:var(--bg);color:var(--ink)}
@@ -50,8 +50,8 @@ a{color:var(--blue)}
 [data-bs-theme="dark"] .legend b,
 [data-bs-theme="dark"] .note-toc a,
 [data-bs-theme="dark"] .paper-row td:not(.paper)::before{color:var(--muted)}
-[data-bs-theme="dark"] .pagination{--bs-pagination-color:var(--blue);--bs-pagination-hover-color:#c8dcff;--bs-pagination-focus-color:#c8dcff;--bs-pagination-active-bg:#245ed8;--bs-pagination-active-border-color:#245ed8}
-[data-bs-theme="dark"] .btn-outline-primary{--bs-btn-color:var(--blue);--bs-btn-border-color:#719cec;--bs-btn-hover-bg:#245ed8;--bs-btn-hover-border-color:#245ed8;--bs-btn-active-bg:#245ed8;--bs-btn-active-border-color:#245ed8}
+[data-bs-theme="dark"] .pagination{--bs-pagination-color:var(--blue);--bs-pagination-hover-color:#c8dcff;--bs-pagination-focus-color:#c8dcff;--bs-pagination-active-bg:var(--blue);--bs-pagination-active-border-color:var(--blue)}
+[data-bs-theme="dark"] .btn-outline-primary{--bs-btn-color:var(--blue);--bs-btn-border-color:var(--line);--bs-btn-hover-bg:var(--theme-accent-soft);--bs-btn-hover-border-color:var(--blue);--bs-btn-active-bg:var(--theme-accent-soft);--bs-btn-active-border-color:var(--blue);--bs-btn-active-color:var(--blue)}
 [data-bs-theme="dark"] .active-filters{background:var(--theme-accent-soft);color:#bad3ff}
 [data-bs-theme="dark"] .blue{background:#203c63;color:#b4d1ff}
 [data-bs-theme="dark"] .purple{background:#3b2d56;color:#d7bfff}
@@ -60,12 +60,11 @@ a{color:var(--blue)}
 [data-bs-theme="dark"] .gray{background:#2b374b;color:#bbcadc}
 [data-bs-theme="dark"] .rank-a{background:#203756;border-color:#4c6da0;color:#b4d1ff}
 [data-bs-theme="dark"] .reading-status,
-[data-bs-theme="dark"] .reading-status[data-status="unread"]{background:#2b374b;border-color:#43546c;color:#bbcadc}
-[data-bs-theme="dark"] .reading-status[data-status="reading"]{background:#203c63;border-color:#4c6da0;color:#b4d1ff}
-[data-bs-theme="dark"] .reading-status[data-status="read"]{background:#203f33;border-color:#3d6e54;color:#a1ddb6}
+[data-bs-theme="dark"] .reading-status[data-status="unread"]{background:#2b374b;border-color:#65758c;color:#c2ccda}
+[data-bs-theme="dark"] .reading-status[data-status="reading"]{background:#4a350e;border-color:#c49331;color:#ffdc83}
+[data-bs-theme="dark"] .reading-status[data-status="read"]{background:#163e2b;border-color:#4a9c6b;color:#9ce8b8}
 [data-bs-theme="dark"] .note-button{background:#3b2d56;border-color:#725a99;color:#d7bfff}
-[data-bs-theme="dark"] .note-content blockquote{background:var(--theme-surface-soft);color:#c4d2e6;border-color:#719cec}
-[data-bs-theme="dark"] .note-content pre{background:#111c2c;color:var(--ink)}
+[data-bs-theme="dark"] .note-content pre{background:var(--theme-surface-soft);color:var(--ink)}
 [data-bs-theme="dark"] .note-content td,
 [data-bs-theme="dark"] .note-content th{border-color:var(--line)}
 [data-bs-theme="dark"] .note-content th{background:var(--theme-surface-soft);color:var(--muted)}
