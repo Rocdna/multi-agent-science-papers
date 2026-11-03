@@ -28,6 +28,10 @@ for update in updates:
         raise ValueError("Each update needs a title")
     if not isinstance(update.get("detail", ""), str):
         raise ValueError("Update details must be text")
+    for field in ("title", "detail"):
+        value = update.get(field, "")
+        if re.search(r"\uFFFD|\?{2,}|锟斤拷|Ã.|â€", value):
+            raise ValueError(f"Suspicious encoding in update {update['id']} {field}: {value}")
     if update.get("paperKey") and update["paperKey"] not in papers_by_key:
         raise ValueError(f"Unknown update paper: {update['paperKey']}")
 for paper_key, value in index.items():

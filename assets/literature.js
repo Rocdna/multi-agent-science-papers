@@ -422,6 +422,15 @@
     if (!new URLSearchParams(location.hash.slice(1)).get('note')) restorePosition();
   });
   const initialHash = location.hash;
+  window.addEventListener('literature:reading-status', () => {
+    rows.forEach(row => {
+      const paper = paperFor(row), badge = row.querySelector('.reading-status');
+      badge.dataset.status = statusFor(paper);
+      badge.textContent = statusLabels[badge.dataset.status];
+      badge.setAttribute('aria-label', paper.name + ' 阅读状态：' + badge.textContent);
+    });
+    refresh(false);
+  });
   const initialNote = new URLSearchParams(initialHash.slice(1));
   const hadOverlayEntry = Boolean(history.state?.noteOverlay);
   readCatalogUrl(); restoreExpanded(); refresh(false);

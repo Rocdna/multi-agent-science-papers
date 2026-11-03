@@ -9,7 +9,7 @@
   },
   "EPTEEW67": {
     "name": "ChatMat",
-    "status": "unread"
+    "status": "read"
   },
   "YTLMEHCI": {
     "name": "Co-Scientist",
@@ -41,11 +41,11 @@
   },
   "3EUZQ7ES": {
     "name": "ACCELMAT",
-    "status": "unread"
+    "status": "read"
   },
   "5JRG9I4N": {
     "name": "AtomAgents",
-    "status": "unread"
+    "status": "read"
   },
   "AAKNE5E4": {
     "name": "Atomic Layer Processing",
@@ -57,7 +57,7 @@
   },
   "AJ2BNI5M": {
     "name": "LLaMP",
-    "status": "unread"
+    "status": "read"
   },
   "9GWZ8G79": {
     "name": "MatAgent",
@@ -69,11 +69,11 @@
   },
   "2MZNLYUP": {
     "name": "SciAgents",
-    "status": "unread"
+    "status": "read"
   },
   "MPCAT8WK": {
     "name": "SLEUTH",
-    "status": "unread"
+    "status": "read"
   },
   "VEYZTTAW": {
     "name": "SLM-MATRIX",
@@ -109,7 +109,7 @@
   },
   "AGAN7FLD": {
     "name": "MADE",
-    "status": "reading"
+    "status": "read"
   },
   "6BRVMG2S": {
     "name": "SciAgentGym",
@@ -117,6 +117,10 @@
   },
   "MWYYFXHF": {
     "name": "ChemGraph",
-    "status": "unread"
+    "status": "read"
+  },
+  "9SWXEZFL": {
+    "name": "MACS",
+    "status": "read"
   }
 }

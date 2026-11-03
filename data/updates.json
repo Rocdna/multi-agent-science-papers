@@ -1,5 +1,37 @@
 [
   {
+    "id": "2026-11-03-lammps-agents-added",
+    "date": "2026-11-03",
+    "type": "paper-added",
+    "paperKey": "PEVU8HHP",
+    "title": "新增 LAMMPS-Agents：端到端原子模拟智能体",
+    "detail": "归入方法 · 计算执行；同步代码、Zenodo 数据与 Digital Discovery 评级信息，文献总数增至 34 篇。"
+  },
+  {
+    "id": "2026-11-03-rep-codegen-added",
+    "date": "2026-11-03",
+    "type": "paper-added",
+    "paperKey": "22H8RWT3",
+    "title": "新增 Rep-CodeGen：多智能体生成材料图表示代码",
+    "detail": "归入方法 · 知识工程；ICML 2025，论文未给出可确认的作者代码。"
+  },
+  {
+    "id": "2026-11-03-got-nano-added",
+    "date": "2026-11-03",
+    "type": "paper-added",
+    "paperKey": "T3SF95VA",
+    "title": "新增 GoT-Nano：纳米生物材料图思维立场论文",
+    "detail": "归入综述；AAAI 2026 Bridge，按 Bridge 处理，不套用主会 CCF A。"
+  },
+  {
+    "id": "2026-11-03-macs-added",
+    "date": "2026-11-03",
+    "type": "paper-added",
+    "paperKey": "9SWXEZFL",
+    "title": "新增 MACS：多智能体强化学习优化晶体结构",
+    "detail": "归入方法 · 计算执行；NeurIPS 2025，作者仓库可访问。"
+  },
+  {
     "id": "2026-10-19-chemgraph-added",
     "date": "2026-10-19",
     "type": "paper-added",

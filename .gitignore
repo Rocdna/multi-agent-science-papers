@@ -18,3 +18,10 @@ __pycache__/
 *.tmp
 Thumbs.db
 .DS_Store
+
+# Cloudflare development and generated deployment assets
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+.dev.vars.*

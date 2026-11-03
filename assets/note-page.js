@@ -9,6 +9,12 @@
   });
   const params = new URLSearchParams(location.search);
   const key = params.get('id');
+  window.addEventListener('literature:reading-status', () => {
+    const labels = {unread: '未读', reading: '阅读中', read: '已读'};
+    const status = literatureReadingStatuses[key] || 'unread';
+    byId('note-reading').textContent = '论文：' + labels[status];
+    byId('note-reading').dataset.status = status;
+  });
   if (params.has('return')) {
     try {
       const expected = new URL('index.html', location.href);

@@ -1,6 +1,6 @@
 # Multi-agent × AI 材料文献速览
 
-原有文献核验：2026-10-12 · 展示与摘要表述更新：2026-10-16 · 新增文献核验与同步：2026-10-19 · 共 30 篇：方法 23、综述 5、评测 2。各组按年份从新到旧，同年按名称排列。点击论文名或代码状态可打开链接。
+原有文献核验：2026-10-12 · 展示与摘要表述更新：2026-10-16 · 新增文献核验与同步：2026-11-03 · 共 34 篇：方法 26、综述 6、评测 2。各组按年份从新到旧，同年按名称排列。点击论文名或代码状态可打开链接。
 
 > 评级口径：CCF 2026 目录；JCR 2025 发布版；中科院 2025 大类分区（公开来源参考值）。SCIE 与 ESCI 分开标注；Findings、Workshop 不套用主会等级。正式发表按会议／期刊年份，未确认发表的按预印本年份。
 
@@ -10,6 +10,7 @@
 |---|---|---|---|---|
 | 2025 · [LLaMP](https://aclanthology.org/2025.emnlp-main.1280/) | 通过分层智能体查询材料数据库，并调用模拟工具开展计算。 | EMNLP | CCF B | [公开代码](https://github.com/chiang-yuan/llamp) |
 | 2025 · [Perovskite-LLM](https://aclanthology.org/2025.findings-emnlp.27/) | 用知识图谱和多智能体生成领域训练数据，构建钙钛矿语言模型。 | EMNLP Findings | 不计入主会 CCF | 未找到 |
+| 2025 · [Rep-CodeGen](https://proceedings.mlr.press/v267/huang25an.html) | 让多个 LLM 智能体迭代生成并筛选材料图表示代码。 | ICML | CCF A | 未找到 |
 | 2025 · [SLEUTH](https://arxiv.org/abs/2511.22850) | 让多个智能体整理长文档中的文本与图表，定位回答所需证据。 | arXiv | 预印本，暂无正式评级 | 未找到 |
 | 2025 · [SLM-MATRIX](https://doi.org/10.1038/s41524-025-01719-x) | 让小模型通过多条推理路径协作核对，提取材料数据。 | npj Computational Materials | SCIE；JCR Q1；中科院1区 | [公开代码](https://github.com/AmberGTP5/SLMMATRIX) |
 | 2024 · [HoneyComb](https://aclanthology.org/2024.findings-emnlp.192/) | 结合材料知识库和工具调用，提高材料领域问答与任务表现。 | EMNLP Findings | 不计入主会 CCF | [公开代码](https://github.com/BangLab-UdeM-Mila/NLP4MatSci-HoneyComb) |
@@ -28,8 +29,10 @@
 | 2026 · [AutoDFT](https://arxiv.org/abs/2605.26179) | 自动规划和执行 DFT 计算，并在失败后尝试恢复。 | arXiv | 预印本，暂无正式评级 | 未找到 |
 | 2026 · [ChatMat](https://doi.org/10.1039/d5dd00582e) | 让多个智能体协调 DFT、数据管理与机器学习势计算。 | Digital Discovery | ESCI；JCR Q1 / Q2；中科院2区 | [公开代码](https://github.com/Xiaobu-USTC/ChatMat) |
 | 2026 · [ChemGraph](https://doi.org/10.1038/s42004-025-01776-9) | 把分子模拟拆成多个智能体子任务，调用计算工具完成结构优化与热化学计算。 | Communications Chemistry | SCIE；JCR Q1；中科院1区 · Top | [公开代码](https://github.com/argonne-lcf/ChemGraph) |
+| 2026 · [LAMMPS-Agents](https://doi.org/10.1039/D5DD00435G) | 让多个智能体完成结构生成、势函数检索、LAMMPS 模拟与结果分析。 | Digital Discovery | ESCI；JCR Q1 / Q2；中科院2区 | [公开代码](https://github.com/ANL-NST/LAMMPS-Agents) |
 | 2026 · [MatSciAgent](https://doi.org/10.1038/s43246-025-00994-x) | 用模块化智能体整合材料知识检索、结构生成与模拟。 | Communications Materials | ESCI；JCR Q1；中科院2区 | [公开代码](https://github.com/cakshat/MatSci-LLM-Agents) |
 | 2025 · [AtomAgents](https://doi.org/10.1073/pnas.2414074122) | 结合原子模拟与多模态分析，辅助合金性质计算和设计。 | PNAS | SCIE；JCR Q1；中科院1区 · Top | [公开代码](https://github.com/lamm-mit/AtomAgents) |
+| 2025 · [MACS](https://proceedings.neurips.cc/paper_files/paper/2025/hash/f597e0347e5a1e756422fbc18a026b32-Abstract-Conference.html) | 用多智能体强化学习让原子协同优化晶体结构。 | NeurIPS | CCF A | [公开代码](https://github.com/lrcfmd/macs) |
 | 2024 · [ChemCrow](https://doi.org/10.1038/s42256-024-00832-8) | 让大模型调用专家化学工具，完成分析与合成相关任务。 | Nature Machine Intelligence | SCIE；JCR Q1；中科院1区 · Top | [部分公开](https://github.com/ur-whitelab/chemcrow-public) |
 
 ## 方法 · 闭环发现
@@ -56,6 +59,7 @@
 
 | 年份 · 论文 | 核心工作 | 发表渠道 | 评级／分区 | 作者代码 |
 |---|---|---|---|---|
+| 2026 · [GoT-Nano](https://openreview.net/forum?id=3LqgSvO2Fi) | 立场论文：用图思维、符号求解和多智能体评议设计纳米生物材料。 | AAAI 2026 Bridge · LMReasoning | 不计入主会 CCF | 不适用 |
 | 2026 · [AI 材料：模型、数据与工具](https://doi.org/10.1145/3822503) | 梳理材料科研中的基础模型、智能体、数据集和工具。 | ACM Computing Surveys | SCIE；JCR Q1；中科院1区 · Top | 不适用 |
 | 2026 · [LLM 材料设计](https://doi.org/10.1002/adfm.202525897) | 综述 LLM 在材料性质预测、逆向设计与计算流程中的应用。 | Advanced Functional Materials | SCIE；JCR Q1；中科院1区 · Top | 不适用 |
 | 2026 · [晶体材料：LLM、RAG 与 Agent](https://doi.org/10.1557/s43577-026-01057-3) | 梳理 LLM、RAG 和智能体用于晶体材料发现与表征的方法。 | MRS Bulletin | SCIE；JCR Q2；中科院3区 | 不适用 |
@@ -71,6 +75,10 @@
 
 ## 阅读与复现提示
 
+- **LAMMPS-Agents**：代码仓库 MIT，模拟数据与聊天记录另存 Zenodo；论文以同一势函数下的人类专家结果作对照，未独立复现。
+- **Rep-CodeGen**：ICML 2025 论文与 PMLR 页面未给出作者代码；重点在自动生成满足对称性约束的图表示。
+- **GoT-Nano**：AAAI 2026 Bridge 立场论文，只有概念框架和研究议程，没有实验或代码。
+- **MACS**：代码仓库可访问但未明确许可证；用 CHGNet 势函数做几何优化，效率结论不等于实验合成效果。
 - **LLaMP**：2024 年预印本，正式发表于 EMNLP 2025；侧重工具驱动检索、层级 ReAct 与材料计算。
 - **SciAgentGym**：已确认 ICML 2026 正式录用，CCF A；[作者确认](https://www.huayusha.org/publication/SciAgentGym/)。
 - **ChemGraph**：2026-10-19 核验：[正式论文](https://www.nature.com/articles/s42004-025-01776-9)发表于 2026-01-08，不能按 DOI 中的 2025 判断年份；作者仓库可访问，Apache-2.0，未运行复现实验。JCR Q1 见 [2025 发布版第 92 页](https://cercetare.ubbcluj.ro/wp-content/uploads/2018/02/JCR_iunie_2025.pdf#page=92)；中科院化学大类1区 · Top 采用[公开汇总参考值](https://www.ablesci.com/journal/detail?id=5QjOMD)。

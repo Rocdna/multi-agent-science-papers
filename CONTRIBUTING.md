@@ -42,6 +42,8 @@ CCF、JCR、中科院分别标明，保留评级版本和参考说明；SCIE／E
 
 ## 更新正式阅读状态
 
+已准备 Cloudflare Workers＋D1 在线管理，控制台设置、首次导入和发布步骤见 [云端接入说明](docs/CLOUDFLARE_SETUP.md)。接通后通过 `/admin/` 修改，以 D1 为准；下述文件流程用于接通前维护或更新静态回退副本，不会覆盖云端数据。
+
 在 `data/reading-status.json` 中根据 `name` 找到论文，修改对应 `status`。论文 `key` 用于稳定关联，`name` 仅方便人工查找。
 
 | status | 网站标签 |
@@ -71,7 +73,7 @@ CCF、JCR、中科院分别标明，保留评级版本和参考说明；SCIE／E
 }
 ```
 
-上述为结构示例，不要直接作为实际记录提交。`type` 取 `paper-added`、`paper-updated` 或 `rating-updated`，`id` 唯一，日期使用 `YYYY-MM-DD`；`paperKey` 可省略，填写时必须指向已收录论文。运行 `python scripts/build_notes.py` 同时生成笔记、阅读状态和 `assets/updates-data.js`，首页按日期显示最近 8 条。笔记更新从索引生成，不在事件文件重复登记；不推测过去的收录日期，不将发表年份当作更新日期。
+上述为结构示例，不要直接作为实际记录提交。`type` 取 `paper-added`、`paper-updated` 或 `rating-updated`，`id` 唯一，日期使用 `YYYY-MM-DD`；`paperKey` 可省略，填写时必须指向已收录论文。运行 `python scripts/build_notes.py` 同时生成笔记、阅读状态和 `assets/updates-data.js`，首页按日期显示最近 8 条。笔记更新从索引生成，不在事件文件重复登记；不推测过去的收录日期，不将发表年份当作更新日期。中文 JSON 使用 UTF-8 编辑器或 UTF-8 脚本写入，不要用 PowerShell 字符串直接生成；`npm test` 会拦截 `?` 乱码和替换字符。
 
 首页加载 `assets/updates-data.js` 与 `assets/discovery.js`。两页均在 Marked、DOMPurify 和笔记数据之后、`assets/note-renderer.js` 之前加载 `assets/note-tools.js`，正文解析与章节 ID 共用同一逻辑。全文检索只针对公开笔记，多个关键词匹配同一段落／列表项／表格；按章节合并结果，展示命中摘录。`noteq` 保留首页检索词，笔记链接的 `find` 携带高亮词；回到目录时保留原有筛选与检索条件。结果与高亮使用安全 DOM 文本节点，不将查询词拼入 HTML。
 
@@ -151,3 +153,22 @@ python scripts/prepare_display.py --source "D:/zotero_doc/Multi-agent_AI材料�
 新增筛选条件优先复用当前 `filter-panel`，确保手机抽屉与电脑工具栏共享同一控件。重新从外部工具生成 HTML 时，还需保留图标、上述依赖、筛选抽屉结构和已选条件显示逻辑；现有路径清理脚本不会自动恢复这些界面改动。
 
 界面修改后，至少检查 320px、390px、820px、1024px 和 1440px 的布局，以及筛选、排序、重置、详情展开和抽屉关闭。实际手机浏览器的触摸、软键盘和缩放行为可进一步在设备上检查。
+
+## 维护文献导图
+
+1. 打开 `mindmap.html` 阅读公开版。页面默认只读，不显示编辑入口；需要维护草稿时手动访问 `mindmap.html?edit=1`。
+2. 查看时点击“打开导图文件”，或把 `.xmind` / JSON 文件拖进画布。上传内容只在当前浏览中显示，刷新页面恢复公开版，不写入网站或浏览器存储。
+3. `.xmind` 支持 XMind 8 及更新版本：新版读取 `content.json`，旧版读取 `content.xml`。导入文字层级、http(s) 链接和内嵌 PNG／JPG／WebP 图片；联系线、概要、外框和备注暂不显示。
+4. 画布占据窗口主体。顶部图标带名称提示；定位面板按需打开。拖动空白处移动画布，Ctrl / ⌘ + 滚轮或触屏双指缩放，左下角可适合窗口、定位根主题；全屏按钮在工具栏内。
+5. 阅读时点击主题中的图片可放大，主题链接在新标签打开；Tab 保留键盘导航。Ctrl / ⌘ + O 也可打开文件。
+6. 编辑模式（`?edit=1`，默认不显示入口）：双击空白处新增自由文字；粘贴文字或截图、拖入图片文件，创建独立元素。选中元素可拖动、用右下角控制点调宽度。将自由元素拖到主题上，或点击“接入导图”再选目标主题，可成为子主题；末级主题可用“移为自由元素”回到画布。
+7. 编辑时双击文字修改，Shift + Enter 换行，Enter 确认，Escape 取消。树内 Enter 添加同级、Ctrl / ⌘ + Enter 添加子主题，Delete 删除。属性面板可修改文字、链接、分支颜色和图片宽度。
+8. PNG／JPG／WebP 单张最多 8 MB；每个主题或自由元素支持一张图片，可配文字与资源链接。图片原始内容随文件保存，阅读时可放大。公开图片需有相应使用权限，并在文字或资源链接中注明来源。
+9. 编辑草稿自动写入当前浏览器 IndexedDB，不改变公开页；树与自由元素共用撤销重做。更多菜单中“导出当前 JSON”下载包含图片、自由位置和层级的 `library.json`；“恢复公开版”替换当前查看内容。
+10. 发布时替换 `mindmaps/library.json`，运行 `python scripts/build_mindmap.py`，将源文件与 `assets/mindmap-data.js` 一并提交、部署。公开页只读取仓库发布版本；上传和编辑入口不提供管理员认证。
+
+导图独立维护，文献目录更新不会覆盖手工内容与布局；评级修订需要同步维护。初始数据来自当前 34 篇文献，尚未添加论文配图。
+
+导出格式为 `paper-mindmap` 第 2 版，兼容读取第 1 版。`data.nodeData` 保存导图，`data.canvasItems` 保存独立图文节点及其 x/y 坐标；两者共享标识和数量校验。合计最多 500 个主题／元素，树最多 40 层，文字最多 4000 字符，文件上限 32 MB。只接受 http(s) 资源链接和内嵌位图，导入数据不执行 HTML。
+
+当前不支持任意联系线、概要、外框、备注和多人协作。参考模式及本次取舍见 `docs/MINDMAP_UX.md`。库文件、版本与许可证在 `vendor/mind-elixir/`；树布局由库处理，自由元素与统一历史集成在 `assets/mindmap.js`，XMind 读取在 `assets/xmind-import.js`，边界校验在 `assets/mindmap-schema.js`，视图样式在 `assets/mindmap.css`。
