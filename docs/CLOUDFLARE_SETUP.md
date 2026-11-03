@@ -16,6 +16,8 @@ D1 数据库 ID 已填入 `wrangler.jsonc`：`ed7f8f0e-38a0-452a-9dad-c2cbda28c1
 | Build command | `npm run build` |
 | Deploy command | `npx wrangler deploy` |
 
+`wrangler.jsonc` 已配置 `build.command: npm run build`，部署时会先生成 `dist/`；控制台 Build command 留空也应可用，填相同命令也可以，只是会重复构建一次。
+
 若原命令为 `npx wrangler deploy --assets=.`，改为表中的部署命令，让 Wrangler 使用仓库配置和 `dist/` 公开目录。构建环境依据 `package-lock.json` 安装依赖。保留现有自定义域名和路由。
 
 部署配置会绑定名为 `DB` 的 D1 和名为 `LOGIN_LIMITER` 的内置登录限速器；无需额外创建登录数据库。构建和部署均不执行初始 SQL，也不覆盖云端记录。本地实现不等于线上已接通，当前尚未代替用户执行生产部署。

@@ -11,6 +11,7 @@
 - 从 Zotero 主分类同步新增 LAMMPS-Agents、Rep-CodeGen、GoT-Nano、MACS：更新 Markdown、HTML 数据与静态行、导图、README 统计和文档；总计 34 篇（方法 26、综述 6、评测 2）。
 - 新增编码检查：`npm test` 与 `python scripts/build_notes.py` 会拦截 `?` 乱码和替换字符，避免中文标题或更新说明被错误写入。
 - 按用户要求将 MACS、SLEUTH、ChatMat、ChemGraph 设为已读，同步静态回退状态与 D1 初始化种子。
+- 在 `wrangler.jsonc` 增加部署前构建命令，修复 Cloudflare Workers Builds 因 `dist/` 不存在而直接失败的问题。
 
 ## 2026-10-21
 
