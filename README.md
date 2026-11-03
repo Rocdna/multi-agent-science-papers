@@ -35,9 +35,9 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 
 文献先按全部数据搜索、筛选和排序，再分页显示；默认在类别内按年份从旧到新，同年按名称排列，重置后也恢复该顺序。默认电脑每页 20 篇、平板 12 篇、手机 10 篇，也可手动调整。打开和关闭笔记不会重置当前分页和筛选。
 
-阅读状态提供“未读、阅读中、已读”，未填写时默认未读。云端接通前，记录由 `data/reading-status.json` 生成并随站点发布；接通后，各设备读取 D1，维护者通过登录后的管理页修改。云端不可用时明确显示静态副本或最近同步记录。
+阅读状态提供“未读、阅读中、已读”，未填写时默认未读。记录由 `data/reading-status.json` 生成并随站点发布；维护者修改 JSON 后运行 `python scripts/build_notes.py`，再构建部署即可。没有账号、在线管理或数据库。
 
-状态标记保留文字，并用灰色空心圆（未读）、琥珀色半圆（阅读中）、绿色对勾（已读）区分，浅色与深色模式均适用。当前 MARS、LLEMA、MADE 已按用户要求标记为阅读中。
+状态标记保留文字，并用灰色空心圆（未读）、琥珀色半圆（阅读中）、绿色对勾（已读）区分，浅色与深色模式均适用。当前标记以 `data/reading-status.json` 为准。
 
 每篇文献可以关联多份 Markdown 笔记，卡片只显示一个“笔记 · 数量”入口。默认打开最近更新的笔记；电脑在侧栏切换，手机和平板在顶部选择。笔记用 Bootstrap 弹窗展示，手机为全屏，支持章节目录、图片放大和原生短视频播放器。
 
@@ -49,7 +49,7 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 
 真实笔记使用 UTF-8 编码的 `.md` 文件，放在 `notes/` 中，通过 `notes/index.json` 关联论文的稳定 `key`。更新笔记或阅读状态后运行 `python scripts/build_notes.py`，生成可离线使用的笔记与阅读状态数据。文字和随仓库发布的附件属于公开内容；当前没有网页上传或在线保存入口，上传文件到 GitHub 后仍需完成关联和生成步骤。
 
-云端阅读状态管理已准备好，支持管理员登录后逐篇或批量修改；需先按 [Cloudflare Workers 接入说明](docs/CLOUDFLARE_SETUP.md) 配置 D1 与管理员密码并部署。接通前仍使用静态记录，笔记编辑保持原有维护方式。
+阅读状态完全静态：修改 `data/reading-status.json`，运行 `python scripts/build_notes.py`，再执行 `npm run build`。笔记编辑保持原有维护方式，不需要登录或数据库。
 
 ## 文献画布
 
@@ -109,7 +109,7 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 ├── assets/updates-data.js              # 生成的最近更新记录
 ├── assets/note-tools.js                # 笔记索引、高亮与本地阅读位置
 ├── assets/discovery.js                 # 最近更新与笔记全文检索
-├── data/reading-status.json            # 阅读状态初始化与静态回退副本
+├── data/reading-status.json            # 静态阅读状态记录
 ├── data/updates.json                   # 有明确日期的文献与评级更新事件
 ├── vendor/bootstrap/                   # Bootstrap 静态依赖与许可证
 ├── vendor/marked/                      # Markdown 渲染依赖
@@ -131,7 +131,7 @@ Bootstrap 文件保存在 `vendor/bootstrap/`，响应式调整位于 `assets/re
 
 ## 后续计划
 
-- [x] 阅读状态：未读、阅读中、已读；已准备 D1 云端管理，待配置部署。
+- [x] 阅读状态：未读、阅读中、已读；纯静态 JSON 维护，无云端管理。
 - [x] 分页列表与 Markdown 笔记弹窗，支持图片及短视频。
 - [x] 同一论文的多份笔记、笔记切换与独立链接。
 - [x] 最近更新、笔记全文检索、当前浏览器内的继续阅读。

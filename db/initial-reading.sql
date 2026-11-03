@@ -1,9 +1,0 @@
--- One versioned snapshot makes batch edits atomic and prevents lost updates.
-CREATE TABLE IF NOT EXISTS reading_state (
-  id INTEGER PRIMARY KEY CHECK (id = 1),
-  statuses_json TEXT NOT NULL CHECK (json_valid(statuses_json)),
-  revision INTEGER NOT NULL DEFAULT 1 CHECK (revision > 0),
-  updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
-);
-
-INSERT OR IGNORE INTO reading_state (id, statuses_json, revision) VALUES (1, '{"R6WYYSJE":"unread","W5N9QU8N":"unread","EPTEEW67":"read","YTLMEHCI":"unread","TLYWIK4Q":"reading","QAQKPNWD":"unread","VEPBCVT3":"reading","6U4QQ8NA":"unread","62JE4APB":"unread","74FJ8D9G":"unread","3EUZQ7ES":"read","5JRG9I4N":"read","AAKNE5E4":"unread","NZEE9KQ7":"unread","AJ2BNI5M":"read","9GWZ8G79":"read","ILCSYZDY":"unread","2MZNLYUP":"read","MPCAT8WK":"read","VEYZTTAW":"unread","DQU8P67A":"unread","2T89AXR5":"unread","DWWZRBC9":"unread","G8SIHXVB":"unread","ISLQT4B2":"unread","Z8E692LK":"unread","8DVZXF57":"unread","AGAN7FLD":"read","6BRVMG2S":"unread","MWYYFXHF":"read","9SWXEZFL":"read"}', 1);

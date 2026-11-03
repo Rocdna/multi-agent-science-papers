@@ -26,11 +26,11 @@
 - Git 远程地址：`https://github.com/Rocdna/multi-agent-science-papers.git`；默认维护分支为 `main`。
 - `README.md` 为项目入口，`CONTRIBUTING.md` 记录维护流程，`CHANGELOG.md` 记录主要变化。
 - 文献 Markdown 与 HTML 暂时手动同步；HTML 同时包含 `papers` 数据和静态表格，修改时需兼顾两处。
-- `notes/TEMPLATE.md` 提供阅读笔记模板；网站已提供阅读状态筛选与笔记弹窗。接入云端前由 `data/reading-status.json` 保存正式状态；D1 接通后该文件作为初始化与静态回退副本。访客只看标签，维护者通过受保护的管理页修改；未标记及没有记录的论文默认未读。
+- `notes/TEMPLATE.md` 提供阅读笔记模板；网站已提供阅读状态筛选与笔记弹窗。正式阅读状态保存在 `data/reading-status.json`，运行 `python scripts/build_notes.py` 生成 `assets/reading-data.js` 后随站点发布；未标记及没有记录的论文默认未读。没有账号、在线管理或数据库。
 - 运行 `python scripts/prepare_display.py` 清理公开页面的本地 PDF 链接，原始页面备份到已忽略的 `.local/`。
 - `.gitignore` 排除本地 PDF、Zotero 数据库和页面备份。
 - 用户已将网站部署到 Cloudflare，访问地址为 `https://rocaler.asia`；具体部署配置尚未记录。该地址同时作为 GitHub 仓库的主页链接和 README 在线入口。
-- 网站原先没有后端服务。2026-10-21 用户同意为正式阅读状态接入 Cloudflare D1，并确认现有部署类型为 Worker（`multi-agent-science-papers`），不迁移 Pages。代码已准备 Worker 接口与单密码管理页，用户已创建 D1 并确认完成初始化，线上尚待设置密码和发布；接通后 D1 为正式阅读状态来源，本地 JSON 为初始化／静态回退副本。笔记正文、索引仍随仓库部署。阅读位置、字号偏好等仍仅存当前设备、当前浏览器，可能被清除，不承诺长期保存或跨设备同步。
+- 网站保持纯静态，没有后端服务、数据库或在线管理。2026-11-03 按用户要求移除 Worker 代码、D1、`/admin/` 管理页及相关运行时依赖；保留仅用于上传 `dist/` 静态资源的 Wrangler 配置。阅读状态改为编辑 `data/reading-status.json` 后重新生成并部署。笔记正文、索引随仓库部署；阅读位置、字号偏好仍仅存当前设备、当前浏览器，可能被清除，不承诺长期保存或跨设备同步。
 - 网站图标采用用户确认的透明背景橙色猫耳少女头像，在根目录提供 ICO 和 PNG；来源见 `ICON_CREDITS.md`。重新生成展示页时保留 `<head>` 图标声明和页脚说明链接。
 - 当前按小项目维护，采用 Bootstrap 5.3.8，不迁移 React/Vue。库文件在 `vendor/bootstrap/`，适配样式在 `assets/responsive.css`；部署时保留这些相对目录。
 - 手机和平板的筛选抽屉使用 Bootstrap Offcanvas，与电脑共享同一组控件。外部工具重新生成 HTML 时需保留依赖和筛选交互改动；清理脚本不会自动恢复页面功能。
@@ -74,17 +74,11 @@
 - 用户确认已复现 MADE，以及其称为 SciAgent 的项目；后者具体对应 SciAgents、SciAgentGym 或其他项目仍待确认，后续推荐先排除二者，不自动推断或修改正式阅读状态。
 - 本次核对发现 SLM-MATRIX 的有效作者仓库为 `https://github.com/AmberGTP5/SLM-MATRIX`，原目录中的 `AmberGTP5/SLMMATRIX` 返回 404。复现可行性须查看代码、依赖、数据和评测入口，不能仅凭“公开代码”标签判断；本次只做静态核查，未安装运行这些论文项目。
 
-## 云端阅读状态（2026-10-21）
+## 阅读状态（2026-11-03 恢复纯静态）
 
-- `worker/index.js` 提供公开只读 `/api/reading-status` 与受保护的 `/admin/`、`/api/admin/state`、`PUT /api/admin/reading-status`。使用 D1 绑定 `DB`，保存带版本号的完整状态快照，条件更新保证批量原子提交与冲突检测。`db/initial-reading.sql` 为显式首次导入，不在部署时执行，不覆盖已有状态。
-- 用户已确认在 D1 控制台执行完建表与初始导入 SQL（尚未独立远程核验）；用户要求简化，不使用 Zero Trust 或第三方授权；用户截图确认线上仍为仅静态资源的 Worker，不能先添加运行时密钥；正确顺序为先提交／发布带 `worker/index.js` 和 Wrangler 配置的新版本，再设置 `ADMIN_PASSWORD` Secret。无需重建 Worker。
-- 管理员使用单个 `ADMIN_PASSWORD` Worker Secret（16～128 字符）登录，不依赖 Zero Trust、绑卡或 OAuth。`jose` 签发并验证 8 小时 HS256 会话，放在 HttpOnly／Secure／SameSite=Strict 的主机 Cookie 中，绑定站点；密码更换即撤销旧会话，退出清除当前浏览器 Cookie。管理页空表单公开，管理数据与保存操作均验证会话；同源检查、请求大小与论文 key 校验保留。Worker 配置带 `LOGIN_LIMITER` 内置限速，每来源地址约 5 次／分钟；无密码或限速绑定时拒绝登录，无开发认证旁路。用户只需设置密码，不再配置 Access 的三个 Secret，步骤见 `docs/CLOUDFLARE_SETUP.md`。
-- `assets/cloud-reading.js` 为目录与独立笔记页同步状态，不将正式状态写浏览器存储；无法连接时清楚标明静态副本／最近同步记录，保留阅读能力。管理页支持逐篇和批量修改、保存确认、失败保留、版本冲突提示和 JSON 备份导出。访客仍只读。
-- 用户主要通过双击本地 `index.html` 预览；阅读管理入口使用相对路径 `admin/index.html`，资源及返回入口也使用相对路径。`file:` 下直接展示完整 34 篇管理列表，支持查看、搜索筛选和批量试改，无需登录；试改仅在本页内存中，刷新／恢复预览即还原，禁用云端保存并明确说明。`assets/paper-catalog.js` 由构建脚本从公开论文数据生成，配合静态阅读状态供本地预览；不请求云端接口，不假装已保存。本地静态服务未接入接口时给出说明与重试入口。
-- 用户明确要求简单：始终只有全站共享的一份正式阅读状态，不引入用户注册、个人状态、按账号隔离或多角色权限。单一管理员密码只用于限制修改，普通读者查看同一份结果。
-- 通过 `npm run build` 生成 `dist/` 公开目录和 `worker/catalog.json`；Wrangler 只上传公开目录与 Worker，不上传工作目录、SQL 或本机数据。用户提供的 D1 ID `ed7f8f0e-38a0-452a-9dad-c2cbda28c127` 已填入 `wrangler.jsonc`，数据库名称按 `paper-library` 配置，尚未远程核验；Secret 不写仓库，无生产部署或远程数据库操作。区域建议面向亚洲用户选择亚太位置提示，若已自动创建则可沿用，不将建议记作实际区域。新增依赖 `jose` 与开发工具 Wrangler，不迁移前端框架。
-- 2026-10-21 按用户要求将 ACCELMAT、AtomAgents、LLaMP、SciAgents、MADE 设为已读；初始导入及静态回退已包含这些状态。
-- 2026-11-03 按用户要求将 MACS、SLEUTH、ChatMat、ChemGraph 设为已读；更新 `data/reading-status.json`、`assets/reading-data.js` 与 `db/initial-reading.sql`。线上 D1 若已初始化，仍需在管理页保存或单独更新云端记录。
+- 2026-11-03 按用户要求将 MACS、SLEUTH、ChatMat、ChemGraph 设为已读；状态保存在 `data/reading-status.json`，运行 `python scripts/build_notes.py` 生成 `assets/reading-data.js`。
+- 2026-11-03 按用户要求移除 Worker 代码、D1、`/admin/` 管理页及相关运行时依赖，恢复纯静态站点；保留仅用于上传 `dist/` 静态资源的 Wrangler 配置。维护阅读状态改为编辑 JSON 后重新生成、构建和部署，不涉及账号、数据库或运行时密钥。
+- 未标记及没有记录的论文默认未读。阅读位置、字号偏好仍仅存当前设备、当前浏览器。
 
 ## 文献思维导图（2026-10-21）
 

@@ -42,7 +42,7 @@ CCF、JCR、中科院分别标明，保留评级版本和参考说明；SCIE／E
 
 ## 更新正式阅读状态
 
-已准备 Cloudflare Workers＋D1 在线管理，控制台设置、首次导入和发布步骤见 [云端接入说明](docs/CLOUDFLARE_SETUP.md)。接通后通过 `/admin/` 修改，以 D1 为准；下述文件流程用于接通前维护或更新静态回退副本，不会覆盖云端数据。
+阅读状态完全静态，不经过账号或数据库。直接修改 `data/reading-status.json`，运行 `python scripts/build_notes.py`，再构建并部署。
 
 在 `data/reading-status.json` 中根据 `name` 找到论文，修改对应 `status`。论文 `key` 用于稳定关联，`name` 仅方便人工查找。
 

@@ -5,11 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build_site.mjs",
-    "dev": "npm run build && wrangler dev",
     "check:encoding": "node scripts/check_encoding.mjs",
-    "test": "node scripts/check_encoding.mjs && node --test tests/cloud-reading.test.mjs tests/xmind-import.test.mjs",
-    "db:seed": "node scripts/build_cloud_seed.mjs"
-  },
-  "dependencies": {"jose": "6.2.13"},
-  "devDependencies": {"wrangler": "4.151.3"}
+    "test": "node scripts/check_encoding.mjs && node --test tests/xmind-import.test.mjs"
+  }
 }

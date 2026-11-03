@@ -1,26 +1,10 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "multi-agent-science-papers",
-  "main": "worker/index.js",
-  "compatibility_date": "2026-10-21",
+  "compatibility_date": "2026-11-03",
   "build": {
     "command": "npm run build"
   },
   "assets": {
-    "directory": "./dist",
-    "binding": "ASSETS",
-    "run_worker_first": ["/api/*", "/admin", "/admin/*"],
-    "not_found_handling": "404-page"
-  },
-  // Set ADMIN_PASSWORD as a Worker Secret; never put the password in this file.
-  "ratelimits": [{
-    "name": "LOGIN_LIMITER",
-    "namespace_id": "10462101",
-    "simple": {"limit": 5, "period": 60}
-  }],
-  "d1_databases": [{
-    "binding": "DB",
-    "database_name": "paper-library",
-    "database_id": "ed7f8f0e-38a0-452a-9dad-c2cbda28c127"
-  }]
+    "directory": "./dist"
+  }
 }
