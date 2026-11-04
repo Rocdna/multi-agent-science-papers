@@ -4,7 +4,7 @@
   "title": "Multi-agent × AI 材料文献导图",
   "updated": "2026-11-03",
   "data": {
-    "direction": 1,
+    "direction": 2,
     "nodeData": {
       "id": "root",
       "topic": "Multi-agent × AI 材料",
@@ -97,7 +97,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "direction": 0
         },
         {
           "id": "topic-hypothesis",
@@ -132,7 +133,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "direction": 0
         },
         {
           "id": "topic-computation",
@@ -230,7 +232,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "direction": 1
         },
         {
           "id": "topic-discovery",
@@ -319,7 +322,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "direction": 1
         },
         {
           "id": "topic-general",
@@ -399,7 +403,8 @@
                 }
               ]
             }
-          ]
+          ],
+          "direction": 1
         }
       ]
     }

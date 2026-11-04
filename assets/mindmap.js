@@ -153,6 +153,16 @@
     if (open) { const other=id==='map-inspector'?'map-navigation':'map-inspector'; $(other).hidden=true; $(other==='map-inspector'?'map-inspector-toggle':'map-find-toggle').setAttribute('aria-expanded','false'); }
   }
   function decorate() {
+    const rootId=mind.nodeData.id;
+    mind.el.querySelectorAll('me-tpc').forEach(topic=>{
+      const node=topic.nodeObj;if(!node)return;
+      const branch=node.parent?.id===rootId;
+      topic.classList.toggle('map-topic-root',node.id===rootId);
+      topic.classList.toggle('map-topic-branch',branch);
+      topic.classList.toggle('map-topic-paper',/^paper-/.test(node.id));
+      topic.classList.toggle('map-topic-description',/^description-/.test(node.id));
+      if(branch&&node.branchColor)topic.style.setProperty('--branch-color',node.branchColor);
+    });
     mind.el.querySelectorAll('me-tpc img').forEach(image=>{
       image.draggable=false; image.alt=image.closest('me-tpc').nodeObj.topic.split('\n')[0]||'论文配图'; image.tabIndex=0;
       image.setAttribute('role','button');image.setAttribute('aria-label',`放大：${image.alt}`);

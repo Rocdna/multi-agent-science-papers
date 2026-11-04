@@ -13,6 +13,7 @@
 - 按用户要求将 MACS、SLEUTH、ChatMat、ChemGraph 设为已读，同步静态回退状态与 D1 初始化种子。
 - 在 `wrangler.jsonc` 增加部署前构建命令，修复 Cloudflare Workers Builds 因 `dist/` 不存在而直接失败的问题。
 - 按用户要求恢复纯静态：移除 Worker 代码、D1、在线管理页及相关运行时依赖；保留仅用于上传 `dist/` 静态资源的 Wrangler 配置。阅读状态继续由 `data/reading-status.json` 生成并部署。
+- 导图改为居中根主题、左右分流和五色分支标签，论文节点使用卡片样式；分支默认收起，节点内图片仍可点击放大。
 
 ## 2026-10-21
 
