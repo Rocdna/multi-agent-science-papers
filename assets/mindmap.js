@@ -414,7 +414,7 @@
     $('map-find-toggle').onclick=()=>{panel('map-navigation',$('map-navigation').hidden);if(!$('map-navigation').hidden)$('map-node-select').focus();};$('map-navigation-close').onclick=()=>{panel('map-navigation',false);$('map-find-toggle').focus();};$('map-node-select').onchange=guard(event=>locate(event.target.value));
     $('map-hand-tool').onclick=()=>toggleHand(!hand);$('map-select-tool').onclick=()=>toggleHand(false);
     $('map-zoom-out').onclick=()=>mind.scale(mind.scaleVal/1.2);$('map-zoom-in').onclick=()=>mind.scale(mind.scaleVal*1.2);$('map-fit').onclick=fitContent;
-    $('map-center').onclick=()=>{mind.scale(1);center(mind.findEle(mind.nodeData.id));};
+    $('map-center').onclick=()=>{fitContent();center(mind.findEle(mind.nodeData.id));};
     $('map-fullscreen').onclick=guard(async()=>{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();});
     $('map-open').onclick=()=>$('map-import-file').click();$('map-open-menu').onclick=()=>$('map-import-file').click();
     $('map-import-file').onchange=guard(async event=>{
@@ -459,6 +459,7 @@
     },true);
     window.addEventListener('beforeunload',event=>{if(editing&&(generation>Math.max(savedGeneration,exportedGeneration)||formDirty||inline||$('input-box'))){event.preventDefault();event.returnValue='';}});
     new MutationObserver(()=>{mind.changeTheme(theme());decorate();}).observe(document.documentElement,{attributes:true,attributeFilter:['data-bs-theme']});
+    let resizeTimer=null;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>{if(ready)fitContent();},160);});
     new ResizeObserver(()=>mind.linkDiv()).observe(mind.el);wireCanvas();
   }
   async function init() {
@@ -480,7 +481,7 @@
     mind.bus.addListener('selectNewNode',node=>choose('node',node.id));mind.bus.addListener('expandNode',()=>{if(editing)commit();else decorate();});
     mind.bus.addListener('scale',value=>{$('map-scale').textContent=`${value<.01?(value*100).toFixed(1):Math.round(value*100)}%`;});
     $('map-title').textContent=doc.title;$('map-title').title=doc.title;wire();ready=true;
-    history=[JSON.stringify(snapshot())];historyIndex=0;render();fitContent();
+    history=[JSON.stringify(snapshot())];historyIndex=0;render();requestAnimationFrame(()=>fitContent());
     saveState(warning?'未保存':'');status(warning||'画布已就绪',!!warning);
   }
   function openDatabase() {
